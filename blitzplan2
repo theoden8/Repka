@@ -1,0 +1,9 @@
+corner for staminabar
+
+Field::collide() {
+	. . .
+}
+
+Field::getmoves() {
+	<s>free</s> +> possible
+}
