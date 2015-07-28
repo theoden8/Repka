@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-#include "Image.h"
+#include "Image.hpp"
 
 struct Sprite {
 	std::vector <Image> frames;

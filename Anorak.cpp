@@ -1,5 +1,5 @@
-#include "Anorak.h"
-#include "Field.h"
+#include "Anorak.hpp"
+#include "Field.hpp"
 
 Anorak::Anorak(Field *field, Position destination, Storage *storage) :
 	Player(field, destination, storage)

@@ -1,9 +1,9 @@
 #ifndef __HEADQUARTERS__
 #define __HEADQUARTERS__
 
-#include "Dragon.h"
-#include "Princess.h"
-#include "Knight.h"
+#include "Dragon.hpp"
+#include "Princess.hpp"
+#include "Knight.hpp"
 
 struct Headquarters : public Object {
 	static const int COST = 1000;

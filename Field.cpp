@@ -2,9 +2,9 @@
 #include <iostream>
 #include <cstdlib>
 
-#include "Field.h"
-#include "Grass.h"
-#include "Player.h"
+#include "Field.hpp"
+#include "Grass.hpp"
+#include "Player.hpp"
 
 Field::Field(Storage *storage, int width, int height):
 	width(width), height(height), turn(0),

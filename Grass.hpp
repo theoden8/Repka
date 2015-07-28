@@ -1,7 +1,7 @@
 #ifndef __GRASS__
 #define __GRASS__
 
-#include "Object.h"
+#include "Object.hpp"
 
 struct Grass : public Object {
 	static const int COST = 0;

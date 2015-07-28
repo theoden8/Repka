@@ -1,7 +1,7 @@
 #ifndef __PRINCESS__
 #define __PRINCESS__
 
-#include "Object.h"
+#include "Object.hpp"
 
 struct Princess : public Object {
 	static const int COST = 2;

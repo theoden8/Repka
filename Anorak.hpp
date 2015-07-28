@@ -1,7 +1,7 @@
 #ifndef __ANORAK__
 #define __ANORAK__
 
-#include "Player.h"
+#include "Player.hpp"
 
 struct Anorak:public Player {
 	Anorak(Field *field, Position destination, Storage *storage);

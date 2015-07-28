@@ -1,6 +1,6 @@
-#include "Player.h"
-#include "Headquarters.h"
-#include "Knight.h"
+#include "Player.hpp"
+#include "Headquarters.hpp"
+#include "Knight.hpp"
 
 Player::Player (Field *field, Position destination, Storage *storage):
 	field(field), selected(NULL), gold(Headquarters::COST + Knight::COST), income(1)

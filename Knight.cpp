@@ -1,6 +1,6 @@
-#include "Knight.h"
-#include "Storage.h"
-#include "Field.h"
+#include "Knight.hpp"
+#include "Storage.hpp"
+#include "Field.hpp"
 
 Knight::Knight(Player *owner, Field *field, Storage *storage, Position position):
 	Object(owner, field, storage, position, STAMINA, HITPOINTS, Storage::KNIGHT, true, COST)

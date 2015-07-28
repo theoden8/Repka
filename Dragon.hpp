@@ -1,7 +1,7 @@
 #ifndef __DRAGON__
 #define __DRAGON__
 
-#include "Object.h"
+#include "Object.hpp"
 
 struct Dragon : public Object {
 	static const int COST = 3;

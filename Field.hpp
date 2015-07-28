@@ -4,9 +4,9 @@
 #include <map>
 #include <vector>
 
-#include "Position.h"
-#include "Storage.h"
-#include "Object.h"
+#include "Position.hpp"
+#include "Storage.hpp"
+#include "Object.hpp"
 
 struct Object;
 

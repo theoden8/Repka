@@ -1,4 +1,4 @@
-#include "Sprite.h"
+#include "Sprite.hpp"
 
 std::string str(int x)
 {

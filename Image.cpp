@@ -2,7 +2,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "Image.h"
+#include "Image.hpp"
 
 Image::Image()
 {

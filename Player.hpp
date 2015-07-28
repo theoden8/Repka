@@ -1,8 +1,8 @@
 #ifndef __PLAYER__
 #define __PLAYER__
 
-#include "Position.h"
-#include "Object.h"
+#include "Position.hpp"
+#include "Object.hpp"
 
 struct Storage;
 struct Field;

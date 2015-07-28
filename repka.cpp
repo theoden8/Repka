@@ -4,15 +4,15 @@
 #include <iostream>
 #include <vector>
 
-#include "Object.h"
-#include "Field.h"
-#include "Anorak.h"
-#include "Moob.h"
-#include "Storage.h"
-#include "Headquarters.h"
-#include "Knight.h"
-#include "Princess.h"
-#include "Dragon.h"
+#include "Object.hpp"
+#include "Field.hpp"
+#include "Anorak.hpp"
+#include "Moob.hpp"
+#include "Storage.hpp"
+#include "Headquarters.hpp"
+#include "Knight.hpp"
+#include "Princess.hpp"
+#include "Dragon.hpp"
 
 using std::vector;
 

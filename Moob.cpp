@@ -1,5 +1,5 @@
-#include "Moob.h"
-#include "Field.h"
+#include "Moob.hpp"
+#include "Field.hpp"
 
 Moob::Moob(Field *field, Position destination, Storage *storage) :
 	Player(field, destination, storage)

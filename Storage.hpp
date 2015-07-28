@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "Sprite.h"
+#include "Sprite.hpp"
 
 struct Storage {
 	static const int GRASS = 0;

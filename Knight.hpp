@@ -1,7 +1,7 @@
 #ifndef __KNIGHT__
 #define __KNIGHT__
 
-#include "Object.h"
+#include "Object.hpp"
 
 struct Knight : public Object {
 	static const int COST = 1;
