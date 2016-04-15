@@ -1,7 +1,6 @@
 #ifndef __PLAYER__
 #define __PLAYER__
 
-#include "Position.hpp"
 #include "Object.hpp"
 
 struct Storage;

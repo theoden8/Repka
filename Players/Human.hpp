@@ -1,5 +1,5 @@
-#ifndef __ANORAK__
-#define __ANORAK__
+#ifndef __HUMAN__
+#define __HUMAN__
 
 #include "Player.hpp"
 

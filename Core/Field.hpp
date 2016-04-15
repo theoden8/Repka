@@ -4,7 +4,6 @@
 #include <map>
 #include <vector>
 
-#include "Position.hpp"
 #include "Storage.hpp"
 #include "Object.hpp"
 

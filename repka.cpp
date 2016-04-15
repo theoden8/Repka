@@ -1,30 +1,31 @@
-#include <GLUT/glut.h>
 #include <cstdlib>
 #include <sys/time.h>
 #include <iostream>
 #include <vector>
 
-#include "include_units.hpp"
-#include "include_core.hpp"
-#include "include_players.hpp"
-#include "include_graphics.hpp"
+#include <GLUT/glut.h>
+
+#include "g_storage.hpp"
+#include "Object.hpp"
+#include "g_field.hpp"
+#include "Human.hpp"
+#include "Bot.hpp"
+#include "g_storage.hpp"
+#include "Headquarters.hpp"
+#include "Knight.hpp"
+#include "Princess.hpp"
+#include "Dragon.hpp"
 
 using std::vector;
 
-typedef std::map <Position, std::vector <Object *> > p2vpobj;
-typedef std::map <Position, std::vector <Object *> > :: iterator p2vpobjit;
-typedef std::vector <Object *> vpobj;
-typedef std::vector <Object *> :: iterator vpobjit;
+double g_width = 600, g_height = 600;
+const double g_frequency = 20;
 
-double width = 600;
-double height = 600;
-const double freqy = 20;
+const int g_MSPERS = 1e6;
+timeval g_change_frame;
 
-const int MSPERS = 1e6;
-timeval change_frame;
-
-extern Field *field;
-extern Storage *storage;
+g_field *g_field = NULL;
+g_storage *g_storage = NULL;
 
 int sizex = 15, sizey = 15;
 
@@ -47,20 +48,20 @@ void draw(GLuint frame, Position position) {
 	glPopMatrix();
 }
 
-void display () {
+void display() {
 	glLoadIdentity();
 	glClear(GL_COLOR_BUFFER_BIT);
 	glMatrixMode(GL_PROJECTION);
-	glOrtho(0, field->width, 0, field->height, -1, 1);
+	glOrtho(0, g_field->g_width, 0, g_field->g_height, -1, 1);
 
 	Object *object;
-	for (int x = 0; x < field->width; ++x) {
-		for (int y = 0; y < field->height; ++y) {
+	for (int x = 0; x < g_field->g_width; ++x) {
+		for (int y = 0; y < g_field->g_height; ++y) {
 			Position position(x, y);
-			object = field->GetPassiveObject(position);
+			object = g_field->GetPassiveObject(position);
 			if (object != NULL)
 				draw(object->GetFrame(), object->position);
-			object = field->GetActiveObject(position);
+			object = g_field->GetActiveObject(position);
 			if (object != NULL) {
 				draw(object->GetFrame(), object->position);
 				if(
@@ -69,17 +70,17 @@ void display () {
 						|| object->position == object->target->position
 					)
 				) {
-					draw(storage->sprites[Storage::STAMINABAR].frames[0].id, object->position);
+					draw(g_storage->sprites[g_storage::STAMINABAR].frames[0].id, object->position);
 				}
 			}
 		}
 	}
 
-	Object *selected = field->GetActivePlayer()->selected;
+	Object *selected = g_field->GetActivePlayer()->selected;
 	if (selected != NULL) {
-		draw(storage->sprites[Storage::SELECTION].frames[0].id, selected->position);
+		draw(g_storage->sprites[g_storage::SELECTION].frames[0].id, selected->position);
 		if (selected->target != NULL)
-			draw(storage->sprites[Storage::SELECTED_TARGET].frames[0].id, selected->target->position);
+			draw(g_storage->sprites[g_storage::SELECTED_TARGET].frames[0].id, selected->target->position);
 	}
 
 	glutSwapBuffers();
@@ -89,7 +90,10 @@ void timer(int) {
 }
 
 Position Position2Click(double x, double y) {
-	return Position(x / (width / field->width), (height - y) / (height / field->height));
+	return Position(
+		x / (g_width / g_field->g_width),
+		(g_height - y) / (g_height / g_field->g_height)
+	);
 }
 
 void keyboard(unsigned char key, int x, int y) {
@@ -98,56 +102,54 @@ void keyboard(unsigned char key, int x, int y) {
 			exit(0);
 		break;
 		case 32:
-			field->NextPlayer();
+			g_field->NextPlayer();
 		break;
 	}
 	if(('a' <= key && key <= 'z') || key == 13) {
-		field->GetActivePlayer()->keyboard(key, Position2Click(x, y));
+		g_field->GetActivePlayer()->keyboard(key, Position2Click(x, y));
 	}
 }
 
 void special(int key, int x, int y) {
-	field->GetActivePlayer()->special(key, x, y);
+	g_field->GetActivePlayer()->special(key, x, y);
 }
 
 
 void mouse(int button, int state, int x, int y) {
-	Object *object = field->GetObject(Position2Click(x, y));
+	Object *object = g_field->GetObject(Position2Click(x, y));
 	if (object == NULL) {
 		return;
 	}
-	field->GetActivePlayer()->mouse(button, state, object);
+	g_field->GetActivePlayer()->mouse(button, state, object);
 }
 
-void reshape(int new_width, int new_height) {
-	height = new_height;
-	width = new_width;
-	glViewport(0, 0, width, height);
+void reshape(int new_g_width, int new_g_height) {
+	g_height = new_g_height;
+	g_width = new_g_width;
+	glViewport(0, 0, g_width, g_height);
 	glutPostRedisplay();
 }
 
 void idle() {
 	timeval current_time;
 	gettimeofday(&current_time, NULL);
-	if ((current_time.tv_usec - change_frame.tv_usec + MSPERS) % MSPERS < MSPERS / freqy)
+	if ((current_time.tv_usec - g_change_frame.tv_usec + g_MSPERS) % g_MSPERS < g_MSPERS / g_frequency)
 		return;
 
 	Object *object;
-	for (int x = 0; x < field->width; ++x) {
-		for (int y = 0; y < field->height; ++y) {
+	for (int x = 0; x < g_field->g_width; ++x) {
+		for (int y = 0; y < g_field->g_height; ++y) {
 			Position position(x, y);
-			object = field->GetActiveObject(position);
-			if (object != NULL && rand() % 10 == 0) {
+			object = g_field->GetActiveObject(position);
+			if (object != NULL && rand() % 10 == 0)
 				object->ChangeFrame();
-			}
-			object = field->GetPassiveObject(position);
-			if (object != NULL && rand() % 10 == 0) {
+			object = g_field->GetPassiveObject(position);
+			if (object != NULL && rand() % 10 == 0)
 				object->ChangeFrame();
-			}
 		}
 	}
 
-	change_frame = current_time;
+	g_change_frame = current_time;
 	glutPostRedisplay();
 }
 
@@ -156,35 +158,34 @@ int main(int argc, char **argv) {
 		sizex = atoi(argv[1]);
 		sizey = atoi(argv[2]);
 	}
-	gettimeofday(&change_frame, NULL);
+	gettimeofday(&g_change_frame, NULL);
 
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
-	glutInitWindowSize(width, height);
+	glutInitWindowSize(g_width, g_height);
 	glutCreateWindow("Repka");
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glutDisplayFunc(display);
-	glutTimerFunc(freqy, timer, 0);
+	glutTimerFunc(g_frequency, timer, 0);
 	glutMouseFunc(mouse);
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keyboard);
 	glutIdleFunc(idle);
 	glutSpecialFunc(special);
 
-	storage = new Storage();
-	field = new Field(storage, sizex, sizey);
+	g_storage = new g_storage();
+	g_field = new g_field(g_storage, sizex, sizey);
 
-	field->players.push_back(new Human(field, Position(0, 0), storage));
-	field->players.push_back(new Bot(field, Position(sizex - 1, sizey - 1), storage));
+	g_field->players.push_back(new Human(g_field, Position(0, 0), g_storage));
+	g_field->players.push_back(new Bot(g_field, Position(sizex - 1, sizey - 1), g_storage));
 
 	glutMainLoop();
 
-
-	delete field;
-	delete storage;
+	delete g_field;
+	delete g_storage;
 
 	return 0;
 }

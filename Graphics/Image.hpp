@@ -2,6 +2,7 @@
 #define __IMAGE__
 
 #include <GLUT/glut.h>
+
 #include <string>
 
 struct Image {
