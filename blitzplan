@@ -1,5 +1,5 @@
   ┌──────────────── P L A Y E R ───────────────────┐
-Anorak                   │              Artificial Intelligence
+Human                    │              Artificial Intelligence
   └───┐            VIRT  ├>mouse()                 └────┐
       ├>Mouse      VIRT  ├>keyboard()                   ├>Metric()
       └>Keyboard   VIRT  ├>stamina()                    ├>Turn_group(vector object*)

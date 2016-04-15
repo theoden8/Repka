@@ -123,6 +123,384 @@ _repka/fast:
 	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/build
 .PHONY : _repka/fast
 
+Core/Field.o: Core/Field.cpp.o
+
+.PHONY : Core/Field.o
+
+# target to build an object file
+Core/Field.cpp.o:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Core/Field.cpp.o
+.PHONY : Core/Field.cpp.o
+
+Core/Field.i: Core/Field.cpp.i
+
+.PHONY : Core/Field.i
+
+# target to preprocess a source file
+Core/Field.cpp.i:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Core/Field.cpp.i
+.PHONY : Core/Field.cpp.i
+
+Core/Field.s: Core/Field.cpp.s
+
+.PHONY : Core/Field.s
+
+# target to generate assembly for a file
+Core/Field.cpp.s:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Core/Field.cpp.s
+.PHONY : Core/Field.cpp.s
+
+Core/Position.o: Core/Position.cpp.o
+
+.PHONY : Core/Position.o
+
+# target to build an object file
+Core/Position.cpp.o:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Core/Position.cpp.o
+.PHONY : Core/Position.cpp.o
+
+Core/Position.i: Core/Position.cpp.i
+
+.PHONY : Core/Position.i
+
+# target to preprocess a source file
+Core/Position.cpp.i:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Core/Position.cpp.i
+.PHONY : Core/Position.cpp.i
+
+Core/Position.s: Core/Position.cpp.s
+
+.PHONY : Core/Position.s
+
+# target to generate assembly for a file
+Core/Position.cpp.s:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Core/Position.cpp.s
+.PHONY : Core/Position.cpp.s
+
+Graphics/Image.o: Graphics/Image.cpp.o
+
+.PHONY : Graphics/Image.o
+
+# target to build an object file
+Graphics/Image.cpp.o:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Graphics/Image.cpp.o
+.PHONY : Graphics/Image.cpp.o
+
+Graphics/Image.i: Graphics/Image.cpp.i
+
+.PHONY : Graphics/Image.i
+
+# target to preprocess a source file
+Graphics/Image.cpp.i:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Graphics/Image.cpp.i
+.PHONY : Graphics/Image.cpp.i
+
+Graphics/Image.s: Graphics/Image.cpp.s
+
+.PHONY : Graphics/Image.s
+
+# target to generate assembly for a file
+Graphics/Image.cpp.s:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Graphics/Image.cpp.s
+.PHONY : Graphics/Image.cpp.s
+
+Graphics/Sprite.o: Graphics/Sprite.cpp.o
+
+.PHONY : Graphics/Sprite.o
+
+# target to build an object file
+Graphics/Sprite.cpp.o:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Graphics/Sprite.cpp.o
+.PHONY : Graphics/Sprite.cpp.o
+
+Graphics/Sprite.i: Graphics/Sprite.cpp.i
+
+.PHONY : Graphics/Sprite.i
+
+# target to preprocess a source file
+Graphics/Sprite.cpp.i:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Graphics/Sprite.cpp.i
+.PHONY : Graphics/Sprite.cpp.i
+
+Graphics/Sprite.s: Graphics/Sprite.cpp.s
+
+.PHONY : Graphics/Sprite.s
+
+# target to generate assembly for a file
+Graphics/Sprite.cpp.s:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Graphics/Sprite.cpp.s
+.PHONY : Graphics/Sprite.cpp.s
+
+Graphics/Storage.o: Graphics/Storage.cpp.o
+
+.PHONY : Graphics/Storage.o
+
+# target to build an object file
+Graphics/Storage.cpp.o:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Graphics/Storage.cpp.o
+.PHONY : Graphics/Storage.cpp.o
+
+Graphics/Storage.i: Graphics/Storage.cpp.i
+
+.PHONY : Graphics/Storage.i
+
+# target to preprocess a source file
+Graphics/Storage.cpp.i:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Graphics/Storage.cpp.i
+.PHONY : Graphics/Storage.cpp.i
+
+Graphics/Storage.s: Graphics/Storage.cpp.s
+
+.PHONY : Graphics/Storage.s
+
+# target to generate assembly for a file
+Graphics/Storage.cpp.s:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Graphics/Storage.cpp.s
+.PHONY : Graphics/Storage.cpp.s
+
+Players/Bot.o: Players/Bot.cpp.o
+
+.PHONY : Players/Bot.o
+
+# target to build an object file
+Players/Bot.cpp.o:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Players/Bot.cpp.o
+.PHONY : Players/Bot.cpp.o
+
+Players/Bot.i: Players/Bot.cpp.i
+
+.PHONY : Players/Bot.i
+
+# target to preprocess a source file
+Players/Bot.cpp.i:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Players/Bot.cpp.i
+.PHONY : Players/Bot.cpp.i
+
+Players/Bot.s: Players/Bot.cpp.s
+
+.PHONY : Players/Bot.s
+
+# target to generate assembly for a file
+Players/Bot.cpp.s:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Players/Bot.cpp.s
+.PHONY : Players/Bot.cpp.s
+
+Players/Human.o: Players/Human.cpp.o
+
+.PHONY : Players/Human.o
+
+# target to build an object file
+Players/Human.cpp.o:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Players/Human.cpp.o
+.PHONY : Players/Human.cpp.o
+
+Players/Human.i: Players/Human.cpp.i
+
+.PHONY : Players/Human.i
+
+# target to preprocess a source file
+Players/Human.cpp.i:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Players/Human.cpp.i
+.PHONY : Players/Human.cpp.i
+
+Players/Human.s: Players/Human.cpp.s
+
+.PHONY : Players/Human.s
+
+# target to generate assembly for a file
+Players/Human.cpp.s:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Players/Human.cpp.s
+.PHONY : Players/Human.cpp.s
+
+Players/Player.o: Players/Player.cpp.o
+
+.PHONY : Players/Player.o
+
+# target to build an object file
+Players/Player.cpp.o:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Players/Player.cpp.o
+.PHONY : Players/Player.cpp.o
+
+Players/Player.i: Players/Player.cpp.i
+
+.PHONY : Players/Player.i
+
+# target to preprocess a source file
+Players/Player.cpp.i:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Players/Player.cpp.i
+.PHONY : Players/Player.cpp.i
+
+Players/Player.s: Players/Player.cpp.s
+
+.PHONY : Players/Player.s
+
+# target to generate assembly for a file
+Players/Player.cpp.s:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Players/Player.cpp.s
+.PHONY : Players/Player.cpp.s
+
+Units/Dragon.o: Units/Dragon.cpp.o
+
+.PHONY : Units/Dragon.o
+
+# target to build an object file
+Units/Dragon.cpp.o:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Dragon.cpp.o
+.PHONY : Units/Dragon.cpp.o
+
+Units/Dragon.i: Units/Dragon.cpp.i
+
+.PHONY : Units/Dragon.i
+
+# target to preprocess a source file
+Units/Dragon.cpp.i:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Dragon.cpp.i
+.PHONY : Units/Dragon.cpp.i
+
+Units/Dragon.s: Units/Dragon.cpp.s
+
+.PHONY : Units/Dragon.s
+
+# target to generate assembly for a file
+Units/Dragon.cpp.s:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Dragon.cpp.s
+.PHONY : Units/Dragon.cpp.s
+
+Units/Grass.o: Units/Grass.cpp.o
+
+.PHONY : Units/Grass.o
+
+# target to build an object file
+Units/Grass.cpp.o:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Grass.cpp.o
+.PHONY : Units/Grass.cpp.o
+
+Units/Grass.i: Units/Grass.cpp.i
+
+.PHONY : Units/Grass.i
+
+# target to preprocess a source file
+Units/Grass.cpp.i:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Grass.cpp.i
+.PHONY : Units/Grass.cpp.i
+
+Units/Grass.s: Units/Grass.cpp.s
+
+.PHONY : Units/Grass.s
+
+# target to generate assembly for a file
+Units/Grass.cpp.s:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Grass.cpp.s
+.PHONY : Units/Grass.cpp.s
+
+Units/Headquarters.o: Units/Headquarters.cpp.o
+
+.PHONY : Units/Headquarters.o
+
+# target to build an object file
+Units/Headquarters.cpp.o:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Headquarters.cpp.o
+.PHONY : Units/Headquarters.cpp.o
+
+Units/Headquarters.i: Units/Headquarters.cpp.i
+
+.PHONY : Units/Headquarters.i
+
+# target to preprocess a source file
+Units/Headquarters.cpp.i:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Headquarters.cpp.i
+.PHONY : Units/Headquarters.cpp.i
+
+Units/Headquarters.s: Units/Headquarters.cpp.s
+
+.PHONY : Units/Headquarters.s
+
+# target to generate assembly for a file
+Units/Headquarters.cpp.s:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Headquarters.cpp.s
+.PHONY : Units/Headquarters.cpp.s
+
+Units/Knight.o: Units/Knight.cpp.o
+
+.PHONY : Units/Knight.o
+
+# target to build an object file
+Units/Knight.cpp.o:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Knight.cpp.o
+.PHONY : Units/Knight.cpp.o
+
+Units/Knight.i: Units/Knight.cpp.i
+
+.PHONY : Units/Knight.i
+
+# target to preprocess a source file
+Units/Knight.cpp.i:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Knight.cpp.i
+.PHONY : Units/Knight.cpp.i
+
+Units/Knight.s: Units/Knight.cpp.s
+
+.PHONY : Units/Knight.s
+
+# target to generate assembly for a file
+Units/Knight.cpp.s:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Knight.cpp.s
+.PHONY : Units/Knight.cpp.s
+
+Units/Object.o: Units/Object.cpp.o
+
+.PHONY : Units/Object.o
+
+# target to build an object file
+Units/Object.cpp.o:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Object.cpp.o
+.PHONY : Units/Object.cpp.o
+
+Units/Object.i: Units/Object.cpp.i
+
+.PHONY : Units/Object.i
+
+# target to preprocess a source file
+Units/Object.cpp.i:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Object.cpp.i
+.PHONY : Units/Object.cpp.i
+
+Units/Object.s: Units/Object.cpp.s
+
+.PHONY : Units/Object.s
+
+# target to generate assembly for a file
+Units/Object.cpp.s:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Object.cpp.s
+.PHONY : Units/Object.cpp.s
+
+Units/Princess.o: Units/Princess.cpp.o
+
+.PHONY : Units/Princess.o
+
+# target to build an object file
+Units/Princess.cpp.o:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Princess.cpp.o
+.PHONY : Units/Princess.cpp.o
+
+Units/Princess.i: Units/Princess.cpp.i
+
+.PHONY : Units/Princess.i
+
+# target to preprocess a source file
+Units/Princess.cpp.i:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Princess.cpp.i
+.PHONY : Units/Princess.cpp.i
+
+Units/Princess.s: Units/Princess.cpp.s
+
+.PHONY : Units/Princess.s
+
+# target to generate assembly for a file
+Units/Princess.cpp.s:
+	$(MAKE) -f CMakeFiles/_repka.dir/build.make CMakeFiles/_repka.dir/Units/Princess.cpp.s
+.PHONY : Units/Princess.cpp.s
+
 repka.o: repka.cpp.o
 
 .PHONY : repka.o
@@ -159,6 +537,48 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... _repka"
+	@echo "... Core/Field.o"
+	@echo "... Core/Field.i"
+	@echo "... Core/Field.s"
+	@echo "... Core/Position.o"
+	@echo "... Core/Position.i"
+	@echo "... Core/Position.s"
+	@echo "... Graphics/Image.o"
+	@echo "... Graphics/Image.i"
+	@echo "... Graphics/Image.s"
+	@echo "... Graphics/Sprite.o"
+	@echo "... Graphics/Sprite.i"
+	@echo "... Graphics/Sprite.s"
+	@echo "... Graphics/Storage.o"
+	@echo "... Graphics/Storage.i"
+	@echo "... Graphics/Storage.s"
+	@echo "... Players/Bot.o"
+	@echo "... Players/Bot.i"
+	@echo "... Players/Bot.s"
+	@echo "... Players/Human.o"
+	@echo "... Players/Human.i"
+	@echo "... Players/Human.s"
+	@echo "... Players/Player.o"
+	@echo "... Players/Player.i"
+	@echo "... Players/Player.s"
+	@echo "... Units/Dragon.o"
+	@echo "... Units/Dragon.i"
+	@echo "... Units/Dragon.s"
+	@echo "... Units/Grass.o"
+	@echo "... Units/Grass.i"
+	@echo "... Units/Grass.s"
+	@echo "... Units/Headquarters.o"
+	@echo "... Units/Headquarters.i"
+	@echo "... Units/Headquarters.s"
+	@echo "... Units/Knight.o"
+	@echo "... Units/Knight.i"
+	@echo "... Units/Knight.s"
+	@echo "... Units/Object.o"
+	@echo "... Units/Object.i"
+	@echo "... Units/Object.s"
+	@echo "... Units/Princess.o"
+	@echo "... Units/Princess.i"
+	@echo "... Units/Princess.s"
 	@echo "... repka.o"
 	@echo "... repka.i"
 	@echo "... repka.s"

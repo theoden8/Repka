@@ -4,11 +4,10 @@
 #include <iostream>
 #include <vector>
 
-#include "Units/include.hpp"
-#include "Field.hpp"
-#include "Human.hpp"
-#include "Bot.hpp"
-#include "Storage.hpp"
+#include "include_units.hpp"
+#include "include_core.hpp"
+#include "include_players.hpp"
+#include "include_graphics.hpp"
 
 using std::vector;
 
@@ -24,11 +23,10 @@ const double freqy = 20;
 const int MSPERS = 1e6;
 timeval change_frame;
 
-Field *field = NULL;
-Storage *storage = NULL;
+extern Field *field;
+extern Storage *storage;
 
-int sizex = 15;
-int sizey = 15;
+int sizex = 15, sizey = 15;
 
 void draw(GLuint frame, Position position) {
 	glPushMatrix();
@@ -60,15 +58,13 @@ void display () {
 		for (int y = 0; y < field->height; ++y) {
 			Position position(x, y);
 			object = field->GetPassiveObject(position);
-			if (object != NULL) {
+			if (object != NULL)
 				draw(object->GetFrame(), object->position);
-			}
 			object = field->GetActiveObject(position);
 			if (object != NULL) {
 				draw(object->GetFrame(), object->position);
 				if(
-					object->stamina
-					&& (
+					object->stamina && (
 						object->target == NULL
 						|| object->position == object->target->position
 					)
@@ -82,9 +78,8 @@ void display () {
 	Object *selected = field->GetActivePlayer()->selected;
 	if (selected != NULL) {
 		draw(storage->sprites[Storage::SELECTION].frames[0].id, selected->position);
-		if (selected->target != NULL) {
+		if (selected->target != NULL)
 			draw(storage->sprites[Storage::SELECTED_TARGET].frames[0].id, selected->target->position);
-		}
 	}
 
 	glutSwapBuffers();
