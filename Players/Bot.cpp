@@ -8,14 +8,9 @@ Bot::Bot(Field *field, Position destination, Storage *storage) :
 
 Bot::~Bot() { }
 
-void Bot::keyboard(unsigned char key, Position position) {
-}
-
-void Bot::special(int key, int x, int y) {
-}
-
-void Bot::mouse(int button, int state, Object *object) {
-}
+void Bot::keyboard(unsigned char key, Position position) {}
+void Bot::special(int key, int x, int y) {}
+void Bot::mouse(int button, int state, Object *object) {}
 
 /* std::vector <std::vector <Object *> > Bot::Clusterisation() { */
 /* 	std::vector <Object *> */
@@ -66,14 +61,14 @@ void Bot::mouse(int button, int state, Object *object) {
 /* void Bot::ArtificialIntelligence(std:: vector <std::vector <Object *> > bunches) { */
 /* } */
 
-/* void Bot::SetTargets() { */
-/* 	std::vector <Position> moves = field->GetMoves(city, city->position); */
-/* 	Spawn('d'); */
-/* //	std::vector <std::vector <Object *> > bunches = Clusterisation(); */
-/* //	for(int i = 0; i < bunches.size(); ++i) { */
-/* //		ArtificialIntelligence(bunches[i]); */
-/* //	} */
-/* } */
+void Bot::SetTargets() {
+	std::vector <Position> moves = field->GetMoves(city, city->position);
+	Spawn('d');
+//	std::vector <std::vector <Object *> > bunches = Clusterisation();
+//	for(int i = 0; i < bunches.size(); ++i) {
+//		ArtificialIntelligence(bunches[i]);
+//	}
+}
 
 void Bot::Spawn(char type) {
 	city->Respond(type, Position(0, 0));

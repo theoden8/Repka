@@ -9,8 +9,7 @@ Player::Player (Field *field, Position destination, Storage *storage):
 }
 
 Player::~Player()
-{
-}
+{}
 
 void Player::stamina() {
 }

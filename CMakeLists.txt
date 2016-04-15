@@ -6,7 +6,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3 -Wno-deprecated")
 include_directories(. Units Players Graphics Core)
 
 file(GLOB SRCS
-    *.cpp
+    ./*.cpp
     ./Units/*.cpp
     ./Core/*.cpp
     ./Players/*.cpp

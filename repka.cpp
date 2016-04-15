@@ -5,12 +5,11 @@
 
 #include <GLUT/glut.h>
 
-#include "g_storage.hpp"
+#include "Storage.hpp"
 #include "Object.hpp"
-#include "g_field.hpp"
+#include "Field.hpp"
 #include "Human.hpp"
 #include "Bot.hpp"
-#include "g_storage.hpp"
 #include "Headquarters.hpp"
 #include "Knight.hpp"
 #include "Princess.hpp"
@@ -24,8 +23,8 @@ const double g_frequency = 20;
 const int g_MSPERS = 1e6;
 timeval g_change_frame;
 
-g_field *g_field = NULL;
-g_storage *g_storage = NULL;
+Field *g_field = NULL;
+Storage *g_storage = NULL;
 
 int sizex = 15, sizey = 15;
 
@@ -48,15 +47,15 @@ void draw(GLuint frame, Position position) {
 	glPopMatrix();
 }
 
-void display() {
+void display () {
 	glLoadIdentity();
 	glClear(GL_COLOR_BUFFER_BIT);
 	glMatrixMode(GL_PROJECTION);
-	glOrtho(0, g_field->g_width, 0, g_field->g_height, -1, 1);
+	glOrtho(0, g_field->width, 0, g_field->height, -1, 1);
 
 	Object *object;
-	for (int x = 0; x < g_field->g_width; ++x) {
-		for (int y = 0; y < g_field->g_height; ++y) {
+	for (int x = 0; x < g_field->width; ++x) {
+		for (int y = 0; y < g_field->height; ++y) {
 			Position position(x, y);
 			object = g_field->GetPassiveObject(position);
 			if (object != NULL)
@@ -70,7 +69,7 @@ void display() {
 						|| object->position == object->target->position
 					)
 				) {
-					draw(g_storage->sprites[g_storage::STAMINABAR].frames[0].id, object->position);
+					draw(g_storage->sprites[Storage::STAMINABAR].frames[0].id, object->position);
 				}
 			}
 		}
@@ -78,9 +77,9 @@ void display() {
 
 	Object *selected = g_field->GetActivePlayer()->selected;
 	if (selected != NULL) {
-		draw(g_storage->sprites[g_storage::SELECTION].frames[0].id, selected->position);
+		draw(g_storage->sprites[Storage::SELECTION].frames[0].id, selected->position);
 		if (selected->target != NULL)
-			draw(g_storage->sprites[g_storage::SELECTED_TARGET].frames[0].id, selected->target->position);
+			draw(g_storage->sprites[Storage::SELECTED_TARGET].frames[0].id, selected->target->position);
 	}
 
 	glutSwapBuffers();
@@ -91,8 +90,8 @@ void timer(int) {
 
 Position Position2Click(double x, double y) {
 	return Position(
-		x / (g_width / g_field->g_width),
-		(g_height - y) / (g_height / g_field->g_height)
+		x / (g_width / g_field->width),
+		(g_height - y) / (g_height / g_field->height)
 	);
 }
 
@@ -123,9 +122,9 @@ void mouse(int button, int state, int x, int y) {
 	g_field->GetActivePlayer()->mouse(button, state, object);
 }
 
-void reshape(int new_g_width, int new_g_height) {
-	g_height = new_g_height;
-	g_width = new_g_width;
+void reshape(int new_width, int new_height) {
+	g_height = new_height;
+	g_width = new_width;
 	glViewport(0, 0, g_width, g_height);
 	glutPostRedisplay();
 }
@@ -137,8 +136,8 @@ void idle() {
 		return;
 
 	Object *object;
-	for (int x = 0; x < g_field->g_width; ++x) {
-		for (int y = 0; y < g_field->g_height; ++y) {
+	for (int x = 0; x < g_field->width; ++x) {
+		for (int y = 0; y < g_field->height; ++y) {
 			Position position(x, y);
 			object = g_field->GetActiveObject(position);
 			if (object != NULL && rand() % 10 == 0)
@@ -176,8 +175,8 @@ int main(int argc, char **argv) {
 	glutIdleFunc(idle);
 	glutSpecialFunc(special);
 
-	g_storage = new g_storage();
-	g_field = new g_field(g_storage, sizex, sizey);
+	g_storage = new Storage();
+	g_field = new Field(g_storage, sizex, sizey);
 
 	g_field->players.push_back(new Human(g_field, Position(0, 0), g_storage));
 	g_field->players.push_back(new Bot(g_field, Position(sizex - 1, sizey - 1), g_storage));

@@ -13,7 +13,8 @@ struct Bot:public Player {
 	void mouse(int button, int state, Object *object);
 	/* std::vector <std::vector <Object *> > Clusterisation(); */
 	/* void ArtificialIntelligence(std::vector <std::vector <Object *> > bunches); */
-	/* void SetTargets(); */
+	void SetTargets();
 	void Spawn(char key);
 };
+
 #endif
