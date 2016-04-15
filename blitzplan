@@ -1,8 +1,0 @@
-  ┌──────────────── P L A Y E R ───────────────────┐
-Human                    │              Artificial Intelligence
-  └───┐            VIRT  ├>mouse()                 └────┐
-      ├>Mouse      VIRT  ├>keyboard()                   ├>Metric()
-      └>Keyboard   VIRT  ├>stamina()                    ├>Turn_group(vector object*)
-                   VIRT  ├>death                        └>Clusterization()
-                         │
-                         └>(Graphic repka.cpp)
