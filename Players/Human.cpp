@@ -1,14 +1,14 @@
-#include "Anorak.hpp"
-#include "Field.hpp"
+#include "Human.hpp"
+#include "../Field.hpp"
 
-Anorak::Anorak(Field *field, Position destination, Storage *storage) :
+Human::Human(Field *field, Position destination, Storage *storage) :
 	Player(field, destination, storage)
 {
 }
 
-Anorak::~Anorak() { }
+Human::~Human() { }
 
-void Anorak::keyboard(unsigned char key, Position position) {
+void Human::keyboard(unsigned char key, Position position) {
 	if (selected == NULL || selected->owner != this) {
 		return;
 	}
@@ -19,7 +19,7 @@ void Anorak::keyboard(unsigned char key, Position position) {
 	}
 }
 
-void Anorak::special(int key, int x, int y) {
+void Human::special(int key, int x, int y) {
 	Position selection = selected->position;
 	if (selected == NULL) {
 		selected = city;
@@ -44,7 +44,7 @@ void Anorak::special(int key, int x, int y) {
 	}
 }
 
-void Anorak::mouse(int button, int state, Object *object) {
+void Human::mouse(int button, int state, Object *object) {
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 		selected = object;
 	}

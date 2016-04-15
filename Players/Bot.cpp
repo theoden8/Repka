@@ -1,23 +1,23 @@
-#include "Moob.hpp"
-#include "Field.hpp"
+#include "Bot.hpp"
+#include "../Field.hpp"
 
-Moob::Moob(Field *field, Position destination, Storage *storage) :
+Bot::Bot(Field *field, Position destination, Storage *storage) :
 	Player(field, destination, storage)
 {
 }
 
-Moob::~Moob() { }
+Bot::~Bot() { }
 
-void Moob::keyboard(unsigned char key, Position position) {
+void Bot::keyboard(unsigned char key, Position position) {
 }
 
-void Moob::special(int key, int x, int y) {
+void Bot::special(int key, int x, int y) {
 }
 
-void Moob::mouse(int button, int state, Object *object) {
+void Bot::mouse(int button, int state, Object *object) {
 }
 
-std::vector <std::vector <Object *> > Moob::Clusterisation() {
+std::vector <std::vector <Object *> > Bot::Clusterisation() {
 	std::vector <Object *> my_units;
 	std::vector <int> clusters;
 	std::vector <int> sizes;
@@ -62,10 +62,10 @@ std::vector <std::vector <Object *> > Moob::Clusterisation() {
 	return clusters;
 }
 
-void Moob::ArtificialIntelligence(std:: vector <std::vector <Object *> > bunches) {
+void Bot::ArtificialIntelligence(std:: vector <std::vector <Object *> > bunches) {
 }
 
-void Moob::SetTargets() {
+void Bot::SetTargets() {
 	std::vector <Position> moves = field->GetMoves(city, city->position);
 	Spawn('d');
 //	std::vector <std::vector <Object *> > bunches = Clusterisation();
@@ -74,6 +74,6 @@ void Moob::SetTargets() {
 //	}
 }
 
-void Moob::Spawn(char type) {
+void Bot::Spawn(char type) {
 	city->Respond(type, Position(0, 0));
 }

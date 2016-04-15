@@ -4,15 +4,11 @@
 #include <iostream>
 #include <vector>
 
-#include "Object.hpp"
+#include "Units/include.hpp"
 #include "Field.hpp"
-#include "Anorak.hpp"
-#include "Moob.hpp"
+#include "Human.hpp"
+#include "Bot.hpp"
 #include "Storage.hpp"
-#include "Headquarters.hpp"
-#include "Knight.hpp"
-#include "Princess.hpp"
-#include "Dragon.hpp"
 
 using std::vector;
 
@@ -186,8 +182,8 @@ int main(int argc, char **argv) {
 	storage = new Storage();
 	field = new Field(storage, sizex, sizey);
 
-	field->players.push_back(new Anorak(field, Position(0, 0), storage));
-	field->players.push_back(new Moob(field, Position(sizex - 1, sizey - 1), storage));
+	field->players.push_back(new Human(field, Position(0, 0), storage));
+	field->players.push_back(new Bot(field, Position(sizex - 1, sizey - 1), storage));
 
 	glutMainLoop();
 

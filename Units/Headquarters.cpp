@@ -1,12 +1,9 @@
 #include <iostream>
 
 #include "Headquarters.hpp"
-#include "Storage.hpp"
-#include "Field.hpp"
-#include "Player.hpp"
-#include "Dragon.hpp"
-#include "Princess.hpp"
-#include "Knight.hpp"
+#include "../Storage.hpp"
+#include "../Field.hpp"
+#include "../Player.hpp"
 
 Headquarters::Headquarters(Player *owner, Field *field, Storage *storage, Position position):
 	Object(owner, field, storage, position, STAMINA, HITPOINTS, Storage::HEADQUARTERS, true, COST)

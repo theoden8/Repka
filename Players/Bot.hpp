@@ -5,9 +5,9 @@
 
 #include "Player.hpp"
 
-struct Moob:public Player {
-	Moob(Field *f, Position destination, Storage *storage);
-	~Moob();
+struct Bot:public Player {
+	Bot(Field *f, Position destination, Storage *storage);
+	~Bot();
 	void keyboard(unsigned char key, Position position);
 	void special(int key, int x, int y);
 	void mouse(int button, int state, Object *object);
