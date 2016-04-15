@@ -1,6 +1,6 @@
 #include "Princess.hpp"
-#include "../Storage.hpp"
-#include "../Field.hpp"
+#include "Storage.hpp"
+#include "Field.hpp"
 
 Princess::Princess(Player *owner, Field *field, Storage *storage, Position position):
 	Object(owner, field, storage, position, STAMINA, HITPOINTS, Storage::PRINCESS, true, COST)

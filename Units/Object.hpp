@@ -3,7 +3,7 @@
 
 #include <GLUT/glut.h>
 
-#include "../Position.hpp"
+#include "Position.hpp"
 
 struct Storage;
 struct Field;

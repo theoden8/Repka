@@ -1,9 +1,9 @@
 #include <iostream>
 
 #include "Object.hpp"
-#include "../Field.hpp"
-#include "../Storage.hpp"
-#include "../Player.hpp"
+#include "Field.hpp"
+#include "Storage.hpp"
+#include "Player.hpp"
 
 Object::Object(Player *owner, Field *field, Storage *storage, Position position, int stamina, int hitpoints, int idTexture, bool active, int cost):
 	owner(owner),

@@ -1,5 +1,5 @@
 #include "Bot.hpp"
-#include "../Field.hpp"
+#include "Field.hpp"
 
 Bot::Bot(Field *field, Position destination, Storage *storage) :
 	Player(field, destination, storage)
