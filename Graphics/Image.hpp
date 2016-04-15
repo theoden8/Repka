@@ -1,5 +1,4 @@
-#ifndef __IMAGE__
-#define __IMAGE__
+#pragma once
 
 #include <GLUT/glut.h>
 
@@ -13,5 +12,3 @@ struct Image {
 	Image();
 	bool load(const std::string &filename);
 };
-
-#endif

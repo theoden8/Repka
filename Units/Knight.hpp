@@ -1,5 +1,4 @@
-#ifndef __KNIGHT__
-#define __KNIGHT__
+#pragma once
 
 #include "Object.hpp"
 
@@ -16,5 +15,3 @@ struct Knight : public Object {
 	void Destruction();
 	void ResetStamina();
 };
-
-#endif

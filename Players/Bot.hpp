@@ -1,5 +1,4 @@
-#ifndef __MOOB__
-#define __MOOB__
+#pragma once
 
 #include <vector>
 
@@ -16,5 +15,3 @@ struct Bot:public Player {
 	void SetTargets();
 	void Spawn(char key);
 };
-
-#endif

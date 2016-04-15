@@ -1,5 +1,4 @@
-#ifndef __PRINCESS__
-#define __PRINCESS__
+#pragma once
 
 #include "Object.hpp"
 
@@ -16,5 +15,3 @@ struct Princess : public Object {
 	void Destruction();
 	void ResetStamina();
 };
-
-#endif

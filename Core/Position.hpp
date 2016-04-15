@@ -1,5 +1,4 @@
-#ifndef __POSITION__
-#define __POSITION__
+#pragma once
 
 #include <ostream>
 
@@ -21,5 +20,3 @@ struct Position {
 
 	friend std::ostream &operator << (std::ostream &os, const Position &position);
 };
-
-#endif

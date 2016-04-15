@@ -1,5 +1,4 @@
-#ifndef __OBJECT__
-#define __OBJECT__
+#pragma once
 
 #include <GLUT/glut.h>
 
@@ -35,5 +34,3 @@ struct Object {
 	virtual void Respond(char key, Position mouse);
 	virtual void ResetStamina() = 0;
 };
-
-#endif

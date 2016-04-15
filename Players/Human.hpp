@@ -1,5 +1,4 @@
-#ifndef __HUMAN__
-#define __HUMAN__
+#pragma once
 
 #include "Player.hpp"
 
@@ -10,5 +9,3 @@ struct Human:public Player {
 	void special(int key, int x, int y);
 	void mouse(int button, int state, Object *object);
 };
-
-#endif

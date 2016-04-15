@@ -3,11 +3,10 @@
 #include <iostream>
 #include <vector>
 
-#include <GLUT/glut.h>
-
 #include "Storage.hpp"
 #include "Object.hpp"
 #include "Field.hpp"
+#include "Player.hpp"
 #include "Human.hpp"
 #include "Bot.hpp"
 #include "Headquarters.hpp"

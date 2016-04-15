@@ -1,5 +1,4 @@
-#ifndef __HEADQUARTERS__
-#define __HEADQUARTERS__
+#pragma once
 
 #include "Dragon.hpp"
 #include "Princess.hpp"
@@ -18,5 +17,3 @@ struct Headquarters : public Object {
 	void Respond(char key, Position mouse);
 	void ResetStamina();
 };
-
-#endif

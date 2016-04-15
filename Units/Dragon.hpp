@@ -1,5 +1,4 @@
-#ifndef __DRAGON__
-#define __DRAGON__
+#pragma once
 
 #include "Object.hpp"
 
@@ -16,5 +15,3 @@ struct Dragon : public Object {
 	void Destruction();
 	void ResetStamina();
 };
-
-#endif

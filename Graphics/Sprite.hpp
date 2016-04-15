@@ -1,5 +1,4 @@
-#ifndef __SPRITE__
-#define __SPRITE__
+#pragma once
 
 #include <vector>
 #include <string>
@@ -12,5 +11,3 @@ struct Sprite {
 
 	Sprite(std::string path, int framesCount);
 };
-
-#endif

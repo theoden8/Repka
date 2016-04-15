@@ -1,5 +1,4 @@
-#ifndef __MAP__
-#define __MAP__
+#pragma once
 
 #include <map>
 #include <vector>
@@ -39,5 +38,3 @@ struct Field {
 	Object * operator [] (const Position &position);
 	bool Valid(const Position &position);
 };
-
-#endif

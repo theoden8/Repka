@@ -1,5 +1,4 @@
-#ifndef __GRASS__
-#define __GRASS__
+#pragma once
 
 #include "Object.hpp"
 
@@ -15,5 +14,3 @@ struct Grass : public Object {
 	void Destruction();
 	void ResetStamina();
 };
-
-#endif

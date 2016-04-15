@@ -1,5 +1,4 @@
-#ifndef __PLAYER__
-#define __PLAYER__
+#pragma once
 
 #include "Object.hpp"
 
@@ -22,5 +21,3 @@ struct Player {
 	void death();
 	virtual void SetTargets();
 };
-
-#endif

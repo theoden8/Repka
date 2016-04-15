@@ -1,5 +1,4 @@
-#ifndef __STORAGE__
-#define __STORAGE__
+#pragma once
 
 #include <vector>
 
@@ -19,5 +18,3 @@ struct Storage {
 
 	Storage();
 };
-
-#endif
