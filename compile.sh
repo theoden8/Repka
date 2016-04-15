@@ -1,5 +1,5 @@
 #!/bin/sh
 
-clean.sh
+./clean.sh
 cmake .
 make
