@@ -1,8 +1,8 @@
 #include <iostream>
 
+#include "Storage.hpp"
 #include "Object.hpp"
 #include "Field.hpp"
-#include "Storage.hpp"
 #include "Player.hpp"
 
 Object::Object(Player *owner, Field *field, Storage *storage, Position position, int stamina, int hitpoints, int idTexture, bool active, int cost):
@@ -19,21 +19,15 @@ Object::Object(Player *owner, Field *field, Storage *storage, Position position,
 	cost(cost)
 {
 	field->SetObject(this);
-	if (owner != NULL) {
+	if(owner != NULL)
 		owner->gold -= cost;
-	}
 }
 
 Object::~Object() {
 	field->RemoveObject(this);
-	for(
-		std::vector <Object *>::iterator it = field->active_objects.begin();
-		it != field->active_objects.end();
-		++it
-	) {
-		if (*it != NULL && (*it)->target == this) {
-			(*it)->target = NULL;
-		}
+	for(const auto &it : field->active_objects) {
+		if(it != NULL && it->target == this)
+			it->target = NULL;
 	}
 }
 
@@ -50,7 +44,6 @@ void Object::GoTo(Object *obj) {
 }
 
 void Object::Respond(char key, Position mouse) {
-	if (key == 'h') {
+	if (key == 'h')
 		target = NULL;
-	}
 }

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 
+#include "Storage.hpp"
 #include "Field.hpp"
 #include "Grass.hpp"
 #include "Player.hpp"
@@ -15,62 +16,52 @@ Field::Field(Storage *storage, int width, int height):
 	moves.push_back(Position(0, 1));
 	moves.push_back(Position(1, 0));
 	moves.push_back(Position(0, -1));
-	for(int x = 0; x < width; x++)
+	for(int x = 0; x < width; x++) {
 		for(int y = 0; y < height; y++)
 			new Grass(this, storage, Position(x, y));
+	}
 }
 
-Object * Field::GetObject(const Position &position)
-{
+Object * Field::GetObject(const Position &position) {
 	int index = position.index(width, height);
-	if (active_objects[index] != NULL) {
+	if(active_objects[index] != NULL)
 		return active_objects[index];
-	}
 	return passive_objects[index];
 }
 
-Object * Field::GetActiveObject(const Position &position)
-{
+Object * Field::GetActiveObject(const Position &position) {
 	return active_objects[position.index(width, height)];
 }
 
-Object * Field::GetPassiveObject(const Position &position)
-{
+Object * Field::GetPassiveObject(const Position &position) {
 	return passive_objects[position.index(width, height)];
 }
 
-void Field::SetObject(Object *object)
-{
-	if (object->active) {
+void Field::SetObject(Object *object) {
+	if(object->active)
 		SetActiveObject(object);
-	} else {
+	else
 		SetPassiveObject(object);
-	}
 }
 
-void Field::SetActiveObject(Object *object)
-{
+void Field::SetActiveObject(Object *object) {
 	int index = object->position.index(width, height);
-	if (active_objects[index] == NULL) {
+	if(active_objects[index] == NULL)
 		active_objects[index] = object;
-	}
 }
 
-void Field::SetPassiveObject(Object *object)
-{
+void Field::SetPassiveObject(Object *object) {
 	int index = object->position.index(width, height);
-	if (passive_objects[index] == NULL) {
+	if(passive_objects[index] == NULL)
 		passive_objects[index] = object;
-	}
 }
 
 void Field::RemoveObject(Object *object) {
 	int index = object->position.index(width, height);
-	if (active_objects[index] == object) {
+	if(active_objects[index] == object)
 		active_objects[index] = NULL;
-	} else if (passive_objects[index] == object) {
+	else if(passive_objects[index] == object)
 		passive_objects[index] = NULL;
-	}
 }
 
 bool Field::CanHit(Object *object, Object *target) {
@@ -88,43 +79,33 @@ std::map <Position, int> Field::Bfs(Object *object, Position target) {
 	sequence.push(target);
 	shortest[target] = 0;
 
-	while (!sequence.empty()) {
+	while(!sequence.empty()) {
 		Position t = sequence.front();
 		sequence.pop();
 		std::vector <Position> moves = GetMoves(object, t);
-		for (
-			std::vector <Position>::const_iterator it = moves.begin();
-			it != moves.end();
-			++it
-		) {
-			if(shortest.count(*it) == 0) {
-				shortest[*it] = shortest[t] + 1;
+		for(const auto &it : moves)
+			if(shortest.count(it) == 0) {
+				shortest[it] = shortest[t] + 1;
 				sequence.push(*it);
 			}
-		}
 	}
 	return shortest;
 }
 
 void Field::Move(Object *object) {
-	if (object == NULL || object->target == NULL) {
+	if(object == NULL || object->target == NULL)
 		return;
-	}
 
 	RemoveObject(object);
 	std::map <Position, int> shortest = Bfs(object, object->target->position);
 	while (object->stamina > 0 && object->target->position != object->position) {
 		std::vector <Position> moves = GetMoves(object, object->position);
-		for (
-			std::vector <Position>::const_iterator it = moves.begin();
-			it != moves.end();
-			++it
-		) {
+		for(const auto &it : moves) {
 			if(
-				(shortest.count(*it) == 1)
-				&& (shortest[*it] == shortest[object->position] - 1)
+				(shortest.count(it) == 1)
+				&& (shortest[it] == shortest[object->position] - 1)
 			) {
-				object->position = *it;
+				object->position = it;
 				break;
 			}
 		}
@@ -132,38 +113,29 @@ void Field::Move(Object *object) {
 	}
 	SetObject(object);
 
-	if(shortest[object->position] == 1 && CanHit(object, object->target)) {
-		--object->target->hitpoints;
-		if (object->target->hitpoints == 0) {
-			delete object->target;
-		}
+	if(
+		shortest[object->position] == 1
+			&& CanHit(object, object->target)
+			&& --object->target->hitpoints == 0
+	)
+	{
+		delete object->target;
 	}
-	if(object->position == object->target->position) {
+	if(object->position == object->target->position)
 		object->target = NULL;
-	}
 }
 
 void Field::Move(Player *player) {
-	for(
-		std::vector <Object *>::iterator it = active_objects.begin();
-		it != active_objects.end();
-		++it
-	) {
-		if (*it != NULL && player == (*it)->owner) {
-			Move(*it);
-		}
+	for(const auto &it : active_objects) {
+		if(it != NULL && player == it->owner)
+			Move(it);
 	}
 }
 
 void Field::ResetStamina(Player *player) {
-	for(
-		std::vector <Object *>::iterator it = active_objects.begin();
-		it != active_objects.end();
-		++it
-	) {
-		if(*it != NULL && player == (*it)->owner) {
-			(*it)->ResetStamina();
-		}
+	for(const auto &it : active_objects) {
+		if(it != NULL && player == it->owner)
+			it->ResetStamina();
 	}
 }
 
@@ -189,9 +161,8 @@ std::vector <Position> Field::GetMoves(Object *object, const Position &position)
 	std::vector <Position> valid_moves;
 	for(int i = 0; i < moves.size(); ++i) {
 		Position tmp = position + moves[i];
-		if (Free(object, tmp)) {
+		if(Free(object, tmp))
 			valid_moves.push_back(tmp);
-		}
 	}
 	return valid_moves;
 }
