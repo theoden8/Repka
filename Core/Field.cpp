@@ -86,7 +86,7 @@ std::map <Position, int> Field::Bfs(Object *object, Position target) {
 		for(const auto &it : moves)
 			if(shortest.count(it) == 0) {
 				shortest[it] = shortest[t] + 1;
-				sequence.push(*it);
+				sequence.push(it);
 			}
 	}
 	return shortest;
