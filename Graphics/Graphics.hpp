@@ -2,13 +2,7 @@
 
 #include <sys/time.h>
 
-#include "Storage.hpp"
-#include "Field.hpp"
-
-Field
-	*g_field = NULL;
-Storage
-	*g_storage = NULL;
+#include "repka.hpp"
 
 double
 	g_width = 600,
