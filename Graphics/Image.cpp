@@ -11,13 +11,11 @@ Image::Image()
 	id = 0;
 }
 
-bool Image::load(const std::string &filename)
-{
+bool Image::load(const std::string &filename) {
 	std::ifstream File(filename.c_str(), std::ios::in | std::ios::binary);
 	unsigned char header[20];
 //	std::cerr << "TGA loading: " << filename << std::endl;
-	if (!File.is_open())
-	{
+	if (!File.is_open()) {
 		id = 0;
 //		std::cerr << "TGA loading: Wasn't able to find specified Image" << std::endl;
 		return false;
@@ -25,8 +23,7 @@ bool Image::load(const std::string &filename)
 
 	File.read(reinterpret_cast <char *> (header), sizeof(char) * 18);
 
-	if (header[2] != 2)
-	{
+	if (header[2] != 2) {
 		File.close();
 		id = 0;
 //		std::cerr << "TGA loading: wrong file header" << std::endl;
@@ -34,16 +31,13 @@ bool Image::load(const std::string &filename)
 	}
 
 	if (header[0])
-	{
 		File.seekg(header[0], std::ios_base::cur);
-	}
 
 	width = header[13] * 256 + header[12];
 	height = header[15] * 256 + header[14];
 	int bpp = header[16] / 8;
 
-	if (bpp != 4)
-	{
+	if (bpp != 4) {
 		File.close();
 		id = 0;
 //		std::cerr << "TGA loading: wrong bit depth" << std::endl;
@@ -56,9 +50,7 @@ bool Image::load(const std::string &filename)
 	File.read(reinterpret_cast <char *> (data), sizeof(char) * ImageSize);
 
 	for(GLuint cswap = 0; cswap < (unsigned int) ImageSize; cswap += bpp)
-	{
 		std::swap(data[cswap], data[cswap + 2]);
-	}
 	File.close();
 
 	unsigned int color_mode = GL_RGBA;
