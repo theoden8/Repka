@@ -31,7 +31,7 @@ To compile the program, execute:
     ./link
     ./compile
 
-Or equivalently:
+Or alternatively:
 
     cmake .
     make
