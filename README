@@ -10,6 +10,8 @@ Created on 11/2014 by Kirill Rodriguez.
 
 This is a simple TBS 2D strategy game vaguely resembling the rock-paper-scissors. Each of the players has a headquarters and money, which they use for destroying the opponents base.
 
+I called it "Repka" as very village-like, and therefore for some reason reminds me of the fairy tale "The Great Turnip" (which would be "Repka" in Russian).
+
 -----------------------
     PREREQUISITES
 -----------------------
