@@ -17,8 +17,7 @@ Field::Field(Storage *storage, int width, int height):
 		Position(0, 1),
 		Position(1, 0),
 		Position(0, -1)
-	})
-	{
+	}) {
 		moves.push_back(p);
 	}
 	for(int x = 0; x < width; x++) {
