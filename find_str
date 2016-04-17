@@ -55,7 +55,7 @@ main() {
 	check_deps find xargs nl pygmentize grep
 
 	export -f process_source
-	get_sources "$FILE_MASK" | parallelize 25 process_source {}
+	get_sources "$FILE_MASK" | parallelize 25 process_source
 }
 
 main $@
