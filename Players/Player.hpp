@@ -5,7 +5,6 @@
 struct Storage;
 struct Field;
 
-
 struct Player {
 	Field *field;
 	Object *selected;

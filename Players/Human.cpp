@@ -1,5 +1,7 @@
 #include "Human.hpp"
+
 #include "Field.hpp"
+#include "Position.hpp"
 
 Human::Human(Field *field, Position destination, Storage *storage) :
 	Player(field, destination, storage)

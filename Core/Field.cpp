@@ -12,10 +12,15 @@ Field::Field(Storage *storage, int width, int height):
 	active_objects(width * height, NULL),
 	passive_objects(width * height, NULL)
 {
-	moves.push_back(Position(-1, 0));
-	moves.push_back(Position(0, 1));
-	moves.push_back(Position(1, 0));
-	moves.push_back(Position(0, -1));
+	for(const auto &p: {
+		Position(-1, 0),
+		Position(0, 1),
+		Position(1, 0),
+		Position(0, -1)
+	})
+	{
+		moves.push_back(p);
+	}
 	for(int x = 0; x < width; x++) {
 		for(int y = 0; y < height; y++)
 			new Grass(this, storage, Position(x, y));

@@ -2,7 +2,7 @@
 
 #include <sys/time.h>
 
-#include "repka.hpp"
+#include "Position.hpp"
 
 double
 	g_width = 600,

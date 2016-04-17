@@ -1,0 +1,25 @@
+#!/bin/sh
+
+for cmd in nl grep pygmentize; do
+	[ -z "$(command -v "$cmd")" ] && {
+		>&2 echo "No such command '$cmd'"
+		exit 1
+	}
+done
+
+[ $# -eq 2 ] && {
+	readonly MASK=$1;shift
+} || {
+	readonly MASK="*.?pp"
+}
+
+readonly STR=$1 && shift
+find . -type f -name "$MASK" \
+	| xargs -n 1 -P25 -I % echo \
+"
+		echo %
+		pygmentize -g % \
+			| nl \
+			| grep -E '$STR'
+" \
+	| sh
