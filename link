@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for i in _scripts/*; do
+    ln -s $i ./
+done

@@ -1,0 +1,38 @@
+-----------------------
+    AUTHOR
+-----------------------
+
+Created on 11/2014 by Kirill Rodriguez.
+
+-----------------------
+    PROGRAM
+-----------------------
+
+This is a simple TBS 2D strategy game with units like scissors-paper-stone. Each of the players has a headquarters and money, which they use for destroying the opponents base.
+
+-----------------------
+    PREREQUISITES
+-----------------------
+
+    - CXX compiler
+    - Make
+    - CMake
+    - OpenGL
+
+-----------------------
+    USAGE
+-----------------------
+
+To compile the program, execute:
+
+    ./link
+    ./compile
+
+Or equivalent:
+
+    cmake .
+    make
+
+To run the program, use:
+
+    ./_repka

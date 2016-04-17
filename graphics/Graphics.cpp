@@ -5,8 +5,6 @@
 #include "Object.hpp"
 
 #include "Player.hpp"
-#include "Human.hpp"
-#include "Bot.hpp"
 
 #include "Headquarters.hpp"
 #include "Knight.hpp"
