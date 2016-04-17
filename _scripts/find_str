@@ -27,7 +27,19 @@ parallelize() {
 	local readonly THREADS=$1
 	shift
 
-	xargs -n 1 -P "$THREADS" $@
+	awk \
+"
+	BEGIN {
+		i = 0;
+	} {
+		if(++i == $THREADS) {
+			i = 0;
+			print \"wait\"
+		}
+		print \"$@ \"\$0\" &\"
+	}
+"
+	# xargs -n 1 -P "$THREADS" $@
 }
 
 
@@ -52,7 +64,7 @@ process_source() {
 
 main() {
 	set_args $@
-	check_deps find xargs nl pygmentize grep
+	check_deps find xargs nl pygmentize grep awk
 
 	export -f process_source
 	get_sources "$FILE_MASK" | parallelize 25 process_source
