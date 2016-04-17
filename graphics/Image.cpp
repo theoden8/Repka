@@ -14,7 +14,7 @@ Image::Image()
 bool Image::load(const std::string &filename) {
 	std::ifstream File(filename.c_str(), std::ios::in | std::ios::binary);
 	unsigned char header[20];
-	std::cerr << "TGA loading: " << filename << std::endl;
+	/* std::cerr << "TGA loading: " << filename << std::endl; */
 	if(!File.is_open()) {
 		id = 0;
 		std::cerr << "TGA loading: Wasn't able to find specified Image" << std::endl;
@@ -63,7 +63,7 @@ bool Image::load(const std::string &filename) {
 	delete [] data;
 	data = NULL;
 
-	std::cerr << "TGA loading: finished id = " << id << std::endl;
+	/* std::cerr << "TGA loading: finished id = " << id << std::endl; */
 
 	return true;
 }

@@ -20,7 +20,8 @@ class Graphics {
 	static Storage *storage;
 
 public:
-	static void InitGraphics(Field *, Storage *, int argc, char **argv);
+	static void SetOpenGLContext(int argc, char **argv);
+	static void SetOpenGLFunctions(Field *, Storage *);
 	static void StartGraphics();
 	static void CleanUp();
 

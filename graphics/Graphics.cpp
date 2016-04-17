@@ -21,14 +21,11 @@ Field *
 Storage *
 	Graphics::storage = NULL;
 
-void Graphics::InitGraphics(Field *f, Storage *s, int argc, char **argv) {
-	field = f;
-	storage = s;
+void Graphics::SetOpenGLContext(int argc, char **argv) {
+	gettimeofday(&change_frame, NULL);
 
 	window_width = 600,
 	window_height = 600;
-
-	gettimeofday(&change_frame, NULL);
 
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
@@ -37,6 +34,11 @@ void Graphics::InitGraphics(Field *f, Storage *s, int argc, char **argv) {
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+}
+
+void Graphics::SetOpenGLFunctions(Field *f, Storage *s) {
+	field = f;
+	storage = s;
 
 	glutDisplayFunc(Display);
 	glutTimerFunc(FREQUENCY, Timer, 0);

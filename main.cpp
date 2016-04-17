@@ -10,8 +10,6 @@
 #include "Human.hpp"
 #include "Bot.hpp"
 
-#define LOG {std::cerr << "------------------------------------------" << std::endl;}
-
 int main(int argc, char **argv) {
 	int
 		sizex = 15,
@@ -21,17 +19,12 @@ int main(int argc, char **argv) {
 		sizey = atoi(argv[2]);
 	}
 
-	std::cerr << "\033[1;91m" << argv[0] << "\033[0m\n" << std::endl;
+	Graphics::SetOpenGLContext(argc, argv);
 
 	Storage *storage = new Storage();
-
-	LOG
-
 	Field *field = new Field(storage, sizex, sizey);
 
-	LOG
-
-	Graphics::InitGraphics(field, storage, argc, argv);
+	Graphics::SetOpenGLFunctions(field, storage);
 
 	field->players.push_back(new Human(field, Position(0, 0), storage));
 	field->players.push_back(new Human(field, Position(sizex - 1, sizey - 1), storage));
