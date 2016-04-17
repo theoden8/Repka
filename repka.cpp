@@ -2,28 +2,40 @@
 #include <iostream>
 #include <vector>
 
-#include <GLUT/glut.h>
-
-#include "repka.hpp"
+#include "Storage.hpp"
+#include "Field.hpp"
 #include "Graphics.hpp"
 
 #include "Position.hpp"
 #include "Human.hpp"
 #include "Bot.hpp"
 
+#define LOG {std::cerr << "------------------------------------------" << std::endl;}
+
 int main(int argc, char **argv) {
-	InitGraphics(argc, argv);
+	int
+		sizex = 15,
+		sizey = 15;
+	if(argc == 3) {
+		sizex = atoi(argv[1]);
+		sizey = atoi(argv[2]);
+	}
 
-	g_storage = new Storage();
-	g_field = new Field(g_storage, sizex, sizey);
+	Storage *storage = new Storage();
 
-	g_field->players.push_back(new Human(g_field, Position(0, 0), g_storage));
-	g_field->players.push_back(new Bot(g_field, Position(sizex - 1, sizey - 1), g_storage));
+	LOG
 
-	glutMainLoop();
+	Field *field = new Field(storage, sizex, sizey);
 
-	delete g_field;
-	delete g_storage;
+	LOG
+
+	Graphics::InitGraphics(field, storage, argc, argv);
+
+	field->players.push_back(new Human(field, Position(0, 0), storage));
+	field->players.push_back(new Bot(field, Position(sizex - 1, sizey - 1), storage));
+
+	Graphics::StartGraphics();
+	Graphics::CleanUp();
 
 	return 0;
 }

@@ -2,29 +2,36 @@
 
 #include <sys/time.h>
 
+#include "Storage.hpp"
+#include "Field.hpp"
 #include "Position.hpp"
 
-double
-	g_width = 600,
-	g_height = 600;
-const double
-	g_frequency = 20;
-const int
-	g_MSPERS = 1e6;
-timeval
-	g_change_frame;
-int
-	sizex = 15,
-	sizey = 15;
+#define MSPERS ((int)1e6)
+#define FREQUENCY 20.
 
-void Draw(GLuint frame, Position position);
-void Display();
-void Timer(int);
-Position pos2click(double x, double y);
-void Keyboard(unsigned char key, int x, int y);
-void Special(int key, int x, int y);
-void Mouse(int button, int state, int x, int y);
-void Reshape(int new_width, int new_height);
-void Idle();
+class Graphics {
+	static double
+		window_width,
+		window_height;
+	static timeval
+		change_frame;
 
-void InitGraphics(int argc, char **argv);
+	static Field *field;
+	static Storage *storage;
+
+public:
+	static void InitGraphics(Field *, Storage *, int argc, char **argv);
+	static void StartGraphics();
+	static void CleanUp();
+
+private:
+	static void Draw(GLuint frame, Position position);
+	static void Display();
+	static void Timer(int);
+	static Position pos2click(double x, double y);
+	static void Keyboard(unsigned char key, int x, int y);
+	static void Special(int key, int x, int y);
+	static void Mouse(int button, int state, int x, int y);
+	static void Reshape(int new_width, int new_height);
+	static void Idle();
+};

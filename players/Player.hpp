@@ -14,7 +14,7 @@ struct Player {
 	Player(Field *field, Position destination, Storage *storage);
 	virtual ~Player();
 	virtual void keyboard(unsigned char key, Position position) = 0;
-	virtual void special(int key, int x, int y);
+	virtual void special(int key, int x, int y) = 0;
 	virtual void mouse(int button, int state, Object *object) = 0;
 	void stamina();
 	void death();
