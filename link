@@ -1,5 +1,8 @@
 #!/bin/sh
 
+[[ "$1" = unlink || "$1" = u ]] && readonly CMD=unlink && shift || readonly CMD=link
+
 for i in _scripts/*; do
-    ln -s $i ./
+	[ $CMD = link ] && ln -s $i ./
+	[ $CMD = unlink ] && unlink "$(basename "$i")"
 done
