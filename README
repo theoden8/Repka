@@ -27,6 +27,7 @@ To compile the program, execute:
 
     ./link
     ./compile
+    ./link u
 
 Or equivalent:
 
