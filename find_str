@@ -1,25 +1,61 @@
 #!/bin/sh
 
-for cmd in nl grep pygmentize; do
-	[ -z "$(command -v "$cmd")" ] && {
-		>&2 echo "No such command '$cmd'"
-		exit 1
-	}
-done
-
-[ $# -eq 2 ] && {
-	readonly MASK=$1;shift
-} || {
-	readonly MASK="*.?pp"
+check_deps() {
+	for cmd in $@; do
+		[ -z "$(command -v "$cmd")" ] && {
+			>&2 echo "No such command '$cmd'"
+			exit 1
+		}
+	done
 }
 
-readonly STR=$1 && shift
-find . -type f -name "$MASK" \
-	| xargs -n 1 -P25 -I % echo \
-"
-		echo %
-		pygmentize -g % \
-			| nl \
-			| grep -E '$STR'
-" \
-	| sh
+set_args() {
+	[ $# -eq 2 ] && {
+		readonly FILE_MASK=$1
+		shift
+	} || readonly FILE_MASK="*.?pp"
+
+	readonly REGEX_STR=$1 && shift
+}
+
+
+get_sources() {
+	find . -type f -name "$FILE_MASK"
+}
+
+parallelize() {
+	local readonly THREADS=$1
+	shift
+
+	xargs -n 1 -P "$THREADS" $@
+}
+
+
+colorize() {
+	trap '' INT
+
+	local readonly FILE=$1
+	shift
+
+	pygmentize -f 256 -O style=native -g "$FILE" | nl
+
+	trap 1 INT
+}
+
+process_source() {
+	local readonly FILE=$1
+	shift
+
+	colorize "$FILE" \
+		| grep -E "$REGEX_STR"
+}
+
+main() {
+	set_args $@
+	check_deps find xargs nl pygmentize grep
+
+	export -f process_source
+	get_sources "$FILE_MASK" | parallelize 25 process_source {}
+}
+
+main $@
