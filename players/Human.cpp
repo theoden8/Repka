@@ -21,11 +21,11 @@ void Human::keyboard(unsigned char key, Position position) {
 }
 
 void Human::special(int key, int x, int y) {
-	Position selection = selected->position;
 	if (selected == NULL) {
 		selected = city;
 		return;
 	}
+	Position selection = selected->position;
 
 	switch(key) {
 		case 100 :

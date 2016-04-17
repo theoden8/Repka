@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
 	Graphics::SetOpenGLFunctions(field, storage);
 
 	field->players.push_back(new Human(field, Position(0, 0), storage));
-	field->players.push_back(new Human(field, Position(sizex - 1, sizey - 1), storage));
+	field->players.push_back(new Bot(field, Position(sizex - 1, sizey - 1), storage));
 
 	Graphics::StartGraphics();
 	Graphics::CleanUp();
