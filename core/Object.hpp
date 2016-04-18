@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GLUT/glut.h>
+#include "glut_config.h"
 
 #include "Position.hpp"
 

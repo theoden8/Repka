@@ -1,4 +1,4 @@
-#include <GLUT/glut.h>
+#include "glut_config.h"
 
 #include "Graphics.hpp"
 
