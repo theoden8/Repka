@@ -2,7 +2,7 @@
 
 ## Author
 
-Created on 11/2014 by **Kirill Rodriguez**. At least the 1st of November is the what metadata of the earliest tarball I made of this project says.
+Created on 11/2014 by **Kirill Rodriguez**. At least the 1st of November is what metadata of the earliest tarball I made of this project says.
 
 ## Program
 
