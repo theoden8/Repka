@@ -136,7 +136,7 @@ void Field::Move(Object *object) {
 	)
 	{
 		delete object->target;
-        object->target = NULL;
+		object->target = NULL;
 	}
 }
 
