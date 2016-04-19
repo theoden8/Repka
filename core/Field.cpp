@@ -96,11 +96,10 @@ std::map <Position, int> Field::Bfs(Object *object, const Position &target) {
 	while(!sequence.empty()) {
 		Position t = sequence.front();
 		sequence.pop();
-		std::vector <Position> moves = GetMoves(object, t);
-		for(const auto &it : moves) {
-			if(shortest.count(it) == 0) {
-				shortest[it] = shortest[t] + 1;
-				sequence.push(it);
+		for(const auto &step : GetMoves(object, t)) {
+			if(shortest.count(step) == 0) {
+				shortest[step] = shortest[t] + 1;
+				sequence.push(step);
 			}
 		}
 	}
@@ -113,15 +112,14 @@ void Field::Move(Object *object) {
 
 	RemoveObject(object);
 	std::map <Position, int> shortest = Bfs(object, object->target->position);
-	while (object->stamina > 0 && object->target->position != object->position) {
-		std::vector <Position> moves = GetMoves(object, object->position);
-		for(const auto &it : moves) {
+	while(object->stamina > 0 && object->target->position != object->position) {
+		for(const auto &step : GetMoves(object, object->position)) {
 			if(
-				(shortest.count(it) == 1)
-				&& (shortest[it] == shortest[object->position] - 1)
+				shortest.count(step) == 1
+				&& shortest[step] == shortest[object->position] - 1
 			)
 			{
-				object->position = it;
+				object->position = step;
 				break;
 			}
 		}
@@ -129,14 +127,17 @@ void Field::Move(Object *object) {
 	}
 	SetObject(object);
 
-	if(
-		shortest[object->position] == 1
-			&& CanHit(object, object->target)
+	if(shortest[object->position] == 1) {
+		object->target = GetObject(object->target->position);
+		if(
+			CanHit(object, object->target)
 			&& --object->target->hitpoints == 0
-	)
-	{
-		delete object->target;
-		object->target = NULL;
+		)
+		{
+			Position target_pos = object->target->position;
+			delete object->target;
+			object->target = GetObject(target_pos);
+		}
 	}
 }
 
