@@ -136,9 +136,8 @@ void Field::Move(Object *object) {
 	)
 	{
 		delete object->target;
+        object->target = NULL;
 	}
-	if(object->position == object->target->position)
-		object->target = NULL;
 }
 
 void Field::Move(Player *player) {

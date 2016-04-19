@@ -142,14 +142,13 @@ void Graphics::Special(int key, int x, int y) {
 	field->GetActivePlayer()->special(key, x, y);
 }
 
-
 void Graphics::Mouse(int button, int state, int x, int y) {
 	Object *object = field->GetObject(pos2click(x, y));
-	if(object == NULL) {
+	if(object == NULL)
 		return;
-	}
 	field->GetActivePlayer()->mouse(button, state, object);
 }
+
 
 void Graphics::Reshape(int new_width, int new_height) {
 	window_height = new_height;
