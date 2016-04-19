@@ -10,19 +10,25 @@ struct Player;
 
 struct Object {
 	Player *owner;
-	Position position;
-	int stamina;
-	int hitpoints;
-	Object *target;
-	bool active;
-	int cost;
-	bool fortify;
-
-	Storage *storage;
-	int idTexture;
-	int currentFrame;
 
 	Field *field;
+
+	Position position;
+
+	bool active,
+		 fortify;
+
+	int
+		stamina,
+		hitpoints,
+		cost;
+
+	Object *target;
+	Storage *storage;
+
+	int
+		idTexture,
+		currentFrame;
 
 	Object(Player *owner, Field *field, Storage *storage, Position position, int stamina, int hitpoints, int idTexture, bool active, int cost);
 	virtual ~Object();

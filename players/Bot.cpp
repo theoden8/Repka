@@ -8,7 +8,7 @@ Bot::Bot(Field *field, Position destination, Storage *storage) :
 
 Bot::~Bot() { }
 
-void Bot::keyboard(unsigned char key, Position position) {}
+void Bot::keyboard(unsigned char key, const Position &position) {}
 void Bot::special(int key, int x, int y) {}
 void Bot::mouse(int button, int state, Object *object) {}
 

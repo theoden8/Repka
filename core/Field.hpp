@@ -16,9 +16,9 @@ struct Field {
 
 	Field(Storage *storage, int width, int height);
 
-	Object * GetObject(const Position &position);
-	Object * GetActiveObject(const Position &position);
-	Object * GetPassiveObject(const Position &position);
+	Object *GetObject(const Position &position);
+	Object *GetActiveObject(const Position &position);
+	Object *GetPassiveObject(const Position &position);
 
 	void SetObject(Object *object);
 	void SetActiveObject(Object *object);
@@ -26,7 +26,7 @@ struct Field {
 
 	void RemoveObject(Object *object);
 	bool CanHit(Object *object, Object *target);
-	std::map <Position, int>  Bfs(Object *object, Position target);
+	std::map <Position, int> Bfs(Object *object, const Position &target);
 	void Move(Object *obj);
 	void Move(Player *player);
 	void ResetStamina(Player *player);
@@ -34,6 +34,6 @@ struct Field {
 	void NextPlayer();
 	Player *GetActivePlayer();
 	std::vector <Position> GetMoves(Object *object, const Position &position);
-	Object * operator [] (const Position &position);
+	Object *operator [] (const Position &position);
 	bool Valid(const Position &position);
 };

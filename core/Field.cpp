@@ -17,7 +17,8 @@ Field::Field(Storage *storage, int width, int height):
 		Position(0, 1),
 		Position(1, 0),
 		Position(0, -1)
-	}) {
+	})
+	{
 		moves.push_back(p);
 	}
 	for(int x = 0; x < width; x++) {
@@ -26,18 +27,18 @@ Field::Field(Storage *storage, int width, int height):
 	}
 }
 
-Object * Field::GetObject(const Position &position) {
+Object *Field::GetObject(const Position &position) {
 	int index = position.index(width, height);
 	if(active_objects[index] != NULL)
 		return active_objects[index];
 	return passive_objects[index];
 }
 
-Object * Field::GetActiveObject(const Position &position) {
+Object *Field::GetActiveObject(const Position &position) {
 	return active_objects[position.index(width, height)];
 }
 
-Object * Field::GetPassiveObject(const Position &position) {
+Object *Field::GetPassiveObject(const Position &position) {
 	return passive_objects[position.index(width, height)];
 }
 
@@ -69,15 +70,24 @@ void Field::RemoveObject(Object *object) {
 }
 
 bool Field::CanHit(Object *object, Object *target) {
-	return (
-				(object->idTexture == Storage::KNIGHT && target->idTexture == Storage::DRAGON)
-				|| (object->idTexture == Storage::PRINCESS && target->idTexture == Storage::KNIGHT)
-				|| (object->idTexture == Storage::DRAGON && target->idTexture == Storage::PRINCESS)
-				|| (target->idTexture == Storage::HEADQUARTERS)
-			) && object->owner != object->target->owner;
+	return object->owner != object->target->owner && (
+					object->idTexture == Storage::KNIGHT
+				&&
+					target->idTexture == Storage::DRAGON
+			||
+					object->idTexture == Storage::PRINCESS
+				&&
+					target->idTexture == Storage::KNIGHT
+			||
+					object->idTexture == Storage::DRAGON
+				&&
+					target->idTexture == Storage::PRINCESS
+			||
+				target->idTexture == Storage::HEADQUARTERS
+	);
 }
 
-std::map <Position, int> Field::Bfs(Object *object, Position target) {
+std::map <Position, int> Field::Bfs(Object *object, const Position &target) {
 	std::queue <Position> sequence;
 	std::map <Position, int>  shortest;
 	sequence.push(target);
@@ -87,11 +97,12 @@ std::map <Position, int> Field::Bfs(Object *object, Position target) {
 		Position t = sequence.front();
 		sequence.pop();
 		std::vector <Position> moves = GetMoves(object, t);
-		for(const auto &it : moves)
+		for(const auto &it : moves) {
 			if(shortest.count(it) == 0) {
 				shortest[it] = shortest[t] + 1;
 				sequence.push(it);
 			}
+		}
 	}
 	return shortest;
 }
@@ -108,12 +119,13 @@ void Field::Move(Object *object) {
 			if(
 				(shortest.count(it) == 1)
 				&& (shortest[it] == shortest[object->position] - 1)
-			) {
+			)
+			{
 				object->position = it;
 				break;
 			}
 		}
-		object->stamina--;
+		--object->stamina;
 	}
 	SetObject(object);
 
@@ -171,7 +183,7 @@ std::vector <Position> Field::GetMoves(Object *object, const Position &position)
 	return valid_moves;
 }
 
-Object * Field::operator [] (const Position &position) {
+Object *Field::operator [] (const Position &position) {
 	return GetObject(position);
 }
 

@@ -5,12 +5,12 @@
 
 Human::Human(Field *field, Position destination, Storage *storage) :
 	Player(field, destination, storage)
-{
-}
+{}
 
-Human::~Human() { }
+Human::~Human()
+{}
 
-void Human::keyboard(unsigned char key, Position position) {
+void Human::keyboard(unsigned char key, const Position &position) {
 	if (selected == NULL || selected->owner != this)
 		return;
 
