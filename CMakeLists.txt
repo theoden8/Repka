@@ -3,14 +3,14 @@ cmake_minimum_required(VERSION 2.8)
 project(repka)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3 -Wno-deprecated")
 
-include_directories(. Graphics Core Players Units)
+include_directories(. graphics core players units)
 
 file(GLOB SRCS
     ./*.cpp
-    ./Graphics/*.cpp
-    ./Core/*.cpp
-    ./Players/*.cpp
-    ./Units/*.cpp
+    ./graphics/*.cpp
+    ./core/*.cpp
+    ./players/*.cpp
+    ./units/*.cpp
 )
 add_executable(_repka ${SRCS})
 
