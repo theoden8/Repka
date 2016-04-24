@@ -8,3 +8,4 @@ clean
 compile
 find_str
 run
+unlink
