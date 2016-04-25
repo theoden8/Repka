@@ -42,12 +42,12 @@ To run the program, use:
 
 ### Rush
 
-![begin](/Users/Admin/apps/_src/C++/LargeProjects/Repka/_screenshots/begin.gif =400x400)
+![begin](_screenshots/begin.gif =400x400)
 
 ### Creep
 
-![dragons](/Users/Admin/apps/_src/C++/LargeProjects/Repka/_screenshots/dragons.gif =600x400)
+![dragons](_screenshots/dragons.gif =600x400)
 
 ### Chasing
 
-![chasing](/Users/Admin/apps/_src/C++/LargeProjects/Repka/_screenshots/chasing.gif =200x200)
+![chasing](_screenshots/chasing.gif =200x200)
