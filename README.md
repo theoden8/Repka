@@ -42,12 +42,12 @@ To run the program, use:
 
 ### Rush
 
-![begin](./_screenshots/begin.gif =400x400)
+![begin](./_screenshots/begin.gif)
 
 ### Creep
 
-![dragons](./_screenshots/dragons.gif =600x400)
+![dragons](./_screenshots/dragons.gif)
 
 ### Chasing
 
-![chasing](./_screenshots/chasing.gif =200x200)
+![chasing](./_screenshots/chasing.gif)
