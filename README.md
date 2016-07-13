@@ -1,8 +1,6 @@
 # Repka
 
-## Icon
-
-![Icon](./_Icon.png)
+![](./_Icon.png)
 
 ## Author
 
