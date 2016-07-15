@@ -9,3 +9,4 @@ compile
 find_str
 run
 unlink
+/close
