@@ -1,3 +1,3 @@
 #!/bin/sh
 
-rm -rf CMakeCache.txt CMakeFiles cmake_install.cmake Makefile _repka
+rm -rvf CMakeCache.txt CMakeFiles cmake_install.cmake Makefile _repka
