@@ -12,8 +12,8 @@
 
 int main(int argc, char **argv) {
 	int
-		sizex = 15,
-		sizey = 15;
+		sizex = 60,
+		sizey = 40;
 	if(argc == 3) {
 		sizex = atoi(argv[1]);
 		sizey = atoi(argv[2]);
@@ -30,7 +30,4 @@ int main(int argc, char **argv) {
 	field->players.push_back(new Bot(field, Position(sizex - 1, sizey - 1), storage));
 
 	Graphics::StartGraphics();
-	Graphics::CleanUp();
-
-	return 0;
 }

@@ -10,4 +10,6 @@ struct Sprite {
 	int frequency;
 
 	Sprite(std::string path, int framesCount);
+	~Sprite();
+	void Clear();
 };

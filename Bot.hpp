@@ -10,8 +10,8 @@ struct Bot:public Player {
 	void keyboard(unsigned char key, const Position &position);
 	void special(int key, int x, int y);
 	void mouse(int button, int state, Object *object);
-	/* std::vector <std::vector <Object *> > Clusterisation(); */
-	/* void ArtificialIntelligence(std::vector <std::vector <Object *> > bunches); */
+	/* std::vector <std::vector <Object *> > Clusterize(); */
+	/* void AIControl(std::vector <std::vector <Object *> > bunches); */
 	void SetTargets();
 	void Spawn(char key);
 };

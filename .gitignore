@@ -1,12 +1,7 @@
-/_repka
+*.dSYM
+_repka
 _paperwork/
 CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
 Makefile
-/clean
-/compile
-/find_str
-/run
-/unlink
-/close

@@ -11,22 +11,21 @@
 
 class Graphics {
 	static double
-		window_width,
-		window_height;
+		windowWidth,
+		windowHeight;
 	static timeval
-		change_frame;
-
+		changeFrame;
 	static Field *field;
 	static Storage *storage;
-
 public:
 	static void SetOpenGLContext(int argc, char **argv);
 	static void SetOpenGLFunctions(Field *, Storage *);
 	static void StartGraphics();
-	static void CleanUp();
-
 private:
 	static void Draw(GLuint frame, Position position);
+	static void ResetColor();
+	static void SetPlayerColor(Player *p);
+	static void SetVictoryColor(Player *p);
 	static void Display();
 	static void Timer(int);
 	static Position pos2click(double x, double y);

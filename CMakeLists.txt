@@ -1,17 +1,11 @@
 cmake_minimum_required(VERSION 2.8)
 
 project(repka)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3 -Wno-deprecated")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-deprecated")
 
 include_directories(. graphics core players units)
 
-file(GLOB SRCS
-    ./*.cpp
-    ./graphics/*.cpp
-    ./core/*.cpp
-    ./players/*.cpp
-    ./units/*.cpp
-)
+file(GLOB SRCS ./*.cpp)
 add_executable(_repka ${SRCS})
 
 find_package(OpenGL REQUIRED)

@@ -1,3 +1,6 @@
+#include <iostream>
+#include <algorithm>
+
 #include "Bot.hpp"
 #include "Field.hpp"
 
@@ -12,7 +15,7 @@ void Bot::keyboard(unsigned char key, const Position &position) {}
 void Bot::special(int key, int x, int y) {}
 void Bot::mouse(int button, int state, Object *object) {}
 
-/* std::vector <std::vector <Object *> > Bot::Clusterisation() { */
+/* std::vector <std::vector <Object *> > Bot::Clusterize() { */
 /* 	std::vector <Object *> */
 /* 		my_units; */
 /* 	std::vector <int> */
@@ -54,19 +57,19 @@ void Bot::mouse(int button, int state, Object *object) {}
 /* 			} */
 /* 		} */
 /* 	} */
-/* /1* осталось сделать из этого вектор векторов *1/ */
+/* /1* vectirize *1/ */
 /* 	return clusters; */
 /* } */
 
-/* void Bot::ArtificialIntelligence(std:: vector <std::vector <Object *> > bunches) { */
+/* void Bot::AIControl(std:: vector <std::vector <Object *> > bunches) { */
 /* } */
 
 void Bot::SetTargets() {
 	std::vector <Position> moves = field->GetMoves(city, city->position);
 	Spawn('d');
-//	std::vector <std::vector <Object *> > bunches = Clusterisation();
+//	std::vector <std::vector <Object *> > bunches = Clusteze();
 //	for(int i = 0; i < bunches.size(); ++i) {
-//		ArtificialIntelligence(bunches[i]);
+//		AIControl(bunches[i]);
 //	}
 }
 

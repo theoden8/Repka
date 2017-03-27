@@ -1,6 +1,8 @@
-#include <queue>
-#include <iostream>
 #include <cstdlib>
+#include <cassert>
+#include <iostream>
+#include <algorithm>
+#include <queue>
 
 #include "Storage.hpp"
 #include "Field.hpp"
@@ -9,8 +11,8 @@
 
 Field::Field(Storage *storage, int width, int height):
 	width(width), height(height), turn(0),
-	active_objects(width * height, NULL),
-	passive_objects(width * height, NULL)
+	activeObjects(width * height, NULL),
+	passiveObjects(width * height, NULL)
 {
 	for(const auto &p: {
 		Position(-1, 0),
@@ -27,19 +29,28 @@ Field::Field(Storage *storage, int width, int height):
 	}
 }
 
+Field::~Field() {
+	for(const auto &a : activeObjects) {
+		delete a;
+	}
+	for(const auto &p : passiveObjects) {
+		delete p;
+	}
+}
+
 Object *Field::GetObject(const Position &position) {
 	int index = position.index(width, height);
-	if(active_objects[index] != NULL)
-		return active_objects[index];
-	return passive_objects[index];
+	if(activeObjects[index] != NULL)
+		return activeObjects[index];
+	return passiveObjects[index];
 }
 
 Object *Field::GetActiveObject(const Position &position) {
-	return active_objects[position.index(width, height)];
+	return activeObjects[position.index(width, height)];
 }
 
 Object *Field::GetPassiveObject(const Position &position) {
-	return passive_objects[position.index(width, height)];
+	return passiveObjects[position.index(width, height)];
 }
 
 void Field::SetObject(Object *object) {
@@ -51,43 +62,40 @@ void Field::SetObject(Object *object) {
 
 void Field::SetActiveObject(Object *object) {
 	int index = object->position.index(width, height);
-	if(active_objects[index] == NULL)
-		active_objects[index] = object;
+	if(activeObjects[index] == NULL)
+		activeObjects[index] = object;
 }
 
 void Field::SetPassiveObject(Object *object) {
 	int index = object->position.index(width, height);
-	if(passive_objects[index] == NULL)
-		passive_objects[index] = object;
+	if(passiveObjects[index] == NULL)
+		passiveObjects[index] = object;
 }
 
 void Field::RemoveObject(Object *object) {
 	int index = object->position.index(width, height);
-	if(active_objects[index] == object)
-		active_objects[index] = NULL;
-	else if(passive_objects[index] == object)
-		passive_objects[index] = NULL;
+	if(activeObjects[index] == object)
+		activeObjects[index] = NULL;
+	else if(passiveObjects[index] == object)
+		passiveObjects[index] = NULL;
 }
 
 bool Field::CanHit(Object *object, Object *target) {
 	return object->owner != object->target->owner && (
-					object->idTexture == Storage::KNIGHT
-				&&
-					target->idTexture == Storage::DRAGON
+				object->idTexture == Storage::KNIGHT &&
+				target->idTexture == Storage::DRAGON
 			||
-					object->idTexture == Storage::PRINCESS
-				&&
-					target->idTexture == Storage::KNIGHT
+				object->idTexture == Storage::PRINCESS &&
+				target->idTexture == Storage::KNIGHT
 			||
-					object->idTexture == Storage::DRAGON
-				&&
-					target->idTexture == Storage::PRINCESS
+				object->idTexture == Storage::DRAGON &&
+				target->idTexture == Storage::PRINCESS
 			||
 				target->idTexture == Storage::HEADQUARTERS
 	);
 }
 
-std::map <Position, int> Field::Bfs(Object *object, const Position &target) {
+std::map <Position, int> Field::BFS(Object *object, const Position &target) {
 	std::queue <Position> sequence;
 	std::map <Position, int>  shortest;
 	sequence.push(target);
@@ -111,7 +119,7 @@ void Field::Move(Object *object) {
 		return;
 
 	RemoveObject(object);
-	std::map <Position, int> shortest = Bfs(object, object->target->position);
+	std::map <Position, int> shortest = BFS(object, object->target->position);
 	while(object->stamina > 0 && object->target->position != object->position) {
 		for(const auto &step : GetMoves(object, object->position)) {
 			if(
@@ -135,38 +143,57 @@ void Field::Move(Object *object) {
 		)
 		{
 			Position target_pos = object->target->position;
+			bool is_city = object->target->idTexture == Storage::HEADQUARTERS;
+			Player *owner_of_dead = object->target->owner;
 			delete object->target;
+			if(is_city) {
+				DefeatPlayer(owner_of_dead);
+			}
 			object->target = GetObject(target_pos);
 		}
 	}
 }
 
 void Field::Move(Player *player) {
-	for(const auto &it : active_objects) {
+	for(const auto &it : activeObjects) {
 		if(it != NULL && player == it->owner)
 			Move(it);
 	}
 }
 
 void Field::ResetStamina(Player *player) {
-	for(const auto &it : active_objects) {
+	for(const auto &it : activeObjects) {
 		if(it != NULL && player == it->owner)
 			it->ResetStamina();
 	}
 }
 
-bool Field::Free(Object *object, Position target) {
-	Object *aim = GetActiveObject(target);
-	return Valid(target) && aim == NULL;
+bool Field::Free(Position pos) {
+	return Valid(pos) && GetActiveObject(pos) == NULL;
 }
 
 void Field::NextPlayer() {
 	Player *player = GetActivePlayer();
 	player->SetTargets();
 	Move(player);
-	player->gold += player->income;
+	player->money += player->income;
 	ResetStamina(player);
 	turn = (turn + 1) % players.size();
+}
+
+void Field::DefeatPlayer(Player *p) {
+	p->Death();
+	for(auto &a : activeObjects) {
+		if(a != NULL && a->owner == p) {
+			RemoveObject(a);
+			delete a;
+		}
+	}
+	players.erase(std::remove(players.begin(), players.end(), p));
+	delete p;
+	if(players.size() < 2) {
+		winner = players.back();
+	}
 }
 
 Player *Field::GetActivePlayer() {
@@ -177,17 +204,17 @@ std::vector <Position> Field::GetMoves(Object *object, const Position &position)
 	std::vector <Position> valid_moves;
 	for(int i = 0; i < moves.size(); ++i) {
 		Position tmp = position + moves[i];
-		if(Free(object, tmp))
+		if(Free(tmp))
 			valid_moves.push_back(tmp);
 	}
 	return valid_moves;
 }
 
-Object *Field::operator [] (const Position &position) {
+Object *Field::operator[] (const Position &position) {
 	return GetObject(position);
 }
 
-bool Field::Valid (const Position &position) {
+bool Field::Valid(const Position &position) {
 	return
 		position.x >= 0
 		&& position.y >= 0

@@ -8,3 +8,12 @@ Sprite::Sprite (std::string path, int framesCount):
 		frames[i].load("_textures/" + path + "_" + std::to_string(i) + ".tga");
 	}
 }
+
+Sprite::~Sprite()
+{}
+
+void Sprite::Clear() {
+	while(!frames.empty()) {
+		frames.back().Clear();
+	}
+}

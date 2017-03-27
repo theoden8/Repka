@@ -1,3 +1,4 @@
+#include <cassert>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -5,11 +6,10 @@
 #include "Image.hpp"
 
 Image::Image()
-{
-	width = 0;
-	height = 0;
-	id = 0;
-}
+{}
+
+Image::~Image()
+{}
 
 bool Image::load(const std::string &filename) {
 	std::ifstream File(filename.c_str(), std::ios::in | std::ios::binary);
@@ -62,8 +62,12 @@ bool Image::load(const std::string &filename) {
 
 	delete [] data;
 	data = NULL;
-
 	/* std::cerr << "TGA loading: finished id = " << id << std::endl; */
-
+	is_loaded = true;
 	return true;
+}
+
+void Image::Clear() {
+	assert(is_loaded);
+	glDeleteTextures(1, &id);
 }

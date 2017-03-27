@@ -1,6 +1,7 @@
 #include "Storage.hpp"
 
-Storage::Storage()
+Storage::Storage():
+	sprites()
 {
 	// GRASS
 	sprites.push_back(Sprite("grass", 5));
@@ -18,4 +19,15 @@ Storage::Storage()
 	sprites.push_back(Sprite("selected_target", 1));
 	// STAMINA BAR
 	sprites.push_back(Sprite("staminabar", 1));
+	// HEALTHBAR
+	sprites.push_back(Sprite("healthbar", 1));
+}
+
+Storage::~Storage()
+{}
+
+void Storage::Clear() {
+	while(!sprites.empty()) {
+		sprites.back().Clear();
+	}
 }

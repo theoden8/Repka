@@ -17,17 +17,18 @@ void Headquarters::DoStep() {
 
 void Headquarters::Respond(char key, Position mouse) {
 	std::vector <Position> moves = field->GetMoves(this, position);
-	if (moves.empty())
+	if(moves.empty())
 		return;
 
 	Object *object = NULL;
 
-	if(key == 'd' && owner->gold >= Dragon::COST)
+	if(key == 'd' && owner->money >= Dragon::COST) {
 		object = new Dragon(owner, field, storage, moves.back());
-	if(key == 'p' && owner->gold >= Princess::COST)
+	} else if(key == 'p' && owner->money >= Princess::COST) {
 		object = new Princess(owner, field, storage, moves.back());
-	if(key == 'k' && owner->gold >= Knight::COST)
+	} else if(key == 'k' && owner->money >= Knight::COST) {
 		object = new Knight(owner, field, storage, moves.back());
+	}
 
 	if(object != NULL)
 		object->target = target;
