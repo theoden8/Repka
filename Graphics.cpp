@@ -9,19 +9,25 @@
 #include "Player.hpp"
 #include "Storage.hpp"
 
-double Graphics::windowWidth = 600.0;
-double Graphics::windowHeight = 600.0;
+double Graphics::windowWidth = 0.0;
+double Graphics::windowHeight = 0.0;
 timeval Graphics::changeFrame;
 Field *Graphics::field = NULL;
 Storage *Graphics::storage = NULL;
 
-void Graphics::SetOpenGLContext(int argc, char **argv) {
+void Graphics::SetOpenGLContext(double proportion, int argc, char **argv) {
 	gettimeofday(&changeFrame, NULL);
 
 	glutInit(&argc, argv);
+	int maxwidth = glutGet(GLUT_SCREEN_WIDTH);
+	int maxheight = glutGet(GLUT_SCREEN_HEIGHT);
+	windowHeight = maxheight - 100;
+	windowWidth = windowHeight * proportion;
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(windowWidth, windowHeight);
+	glutInitWindowPosition((maxwidth - windowWidth) / 2, 0);
 	glutCreateWindow("Repka");
+	glutShowWindow();
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -142,7 +148,7 @@ void Graphics::Display() {
 
 	if(victory) {
 		sleep(3);
-		Keyboard(27, 0, 0);
+		Quit();
 		storage->Clear();
 		delete storage;
 		delete field->winner;
@@ -163,7 +169,7 @@ Position Graphics::pos2click(double x, double y) {
 void Graphics::Keyboard(unsigned char key, int x, int y) {
 	switch(key) {
 		case 27:
-			exit(0);
+			Quit();
 			break;
 		case 32:
 			field->NextPlayer();
@@ -213,4 +219,12 @@ void Graphics::Idle() {
 
 	Graphics::changeFrame = current_time;
 	glutPostRedisplay();
+}
+
+void Graphics::Quit() {
+	field->Clear();
+	delete field;
+	storage->Clear();
+	delete storage;
+	exit(0);
 }

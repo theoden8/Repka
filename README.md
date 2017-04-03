@@ -1,6 +1,6 @@
 # Repka
 
-![](./_screenshots/_Icon.png)
+![](./screenshots/_Icon.png)
 
 ## Author
 
@@ -38,12 +38,12 @@ To run the program, use:
 
 ### Rush
 
-![begin](./_screenshots/begin.gif)
+![begin](./screenshots/begin.gif)
 
 ### Creep
 
-![dragons](./_screenshots/dragons.gif)
+![dragons](./screenshots/dragons.gif)
 
 ### Chasing
 
-![chasing](./_screenshots/chasing.gif)
+![chasing](./screenshots/chasing.gif)

@@ -183,7 +183,7 @@ void Field::NextPlayer() {
 
 void Field::DefeatPlayer(Player *p) {
 	p->Death();
-	for(auto &a : activeObjects) {
+	for(Object *a : activeObjects) {
 		if(a != NULL && a->owner == p) {
 			RemoveObject(a);
 			delete a;
@@ -202,8 +202,8 @@ Player *Field::GetActivePlayer() {
 
 std::vector <Position> Field::GetMoves(Object *object, const Position &position) {
 	std::vector <Position> valid_moves;
-	for(int i = 0; i < moves.size(); ++i) {
-		Position tmp = position + moves[i];
+	for(auto &m : moves) {
+		Position tmp = position + m;
 		if(Free(tmp))
 			valid_moves.push_back(tmp);
 	}
@@ -220,4 +220,12 @@ bool Field::Valid(const Position &position) {
 		&& position.y >= 0
 		&& position.x < width
 		&& position.y < height;
+}
+
+void Field::Clear() {
+	for(Player *p : players)
+		DefeatPlayer(p);
+	for(Object *obj : passiveObjects)
+		if(obj != NULL)
+			delete obj;
 }

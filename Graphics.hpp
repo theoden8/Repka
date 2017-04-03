@@ -18,7 +18,7 @@ class Graphics {
 	static Field *field;
 	static Storage *storage;
 public:
-	static void SetOpenGLContext(int argc, char **argv);
+	static void SetOpenGLContext(double proportion, int argc, char **argv);
 	static void SetOpenGLFunctions(Field *, Storage *);
 	static void StartGraphics();
 private:
@@ -34,4 +34,5 @@ private:
 	static void Mouse(int button, int state, int x, int y);
 	static void Reshape(int new_width, int new_height);
 	static void Idle();
+	static void Quit();
 };

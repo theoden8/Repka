@@ -68,6 +68,6 @@ bool Image::load(const std::string &filename) {
 }
 
 void Image::Clear() {
-	assert(is_loaded);
+	is_loaded = false;
 	glDeleteTextures(1, &id);
 }

@@ -39,4 +39,6 @@ struct Field {
 	std::vector <Position> GetMoves(Object *object, const Position &position);
 	Object *operator[] (const Position &position);
 	bool Valid(const Position &position);
+
+	void Clear();
 };

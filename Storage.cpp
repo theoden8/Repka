@@ -29,5 +29,6 @@ Storage::~Storage()
 void Storage::Clear() {
 	while(!sprites.empty()) {
 		sprites.back().Clear();
+		sprites.pop_back();
 	}
 }
