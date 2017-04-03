@@ -1,6 +1,5 @@
 *.dSYM
-_repka
-_paperwork/
+repka
 CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
