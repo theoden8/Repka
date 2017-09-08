@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
 
 project(repka)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-deprecated")
+add_compile_options(-Wno-deprecated)
+add_compile_options(-std=c++0x)
 
 include_directories(. graphics core players units)
 
